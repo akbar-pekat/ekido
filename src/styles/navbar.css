@@ -99,7 +99,8 @@ nav .navContainer {
    ========================= */
 @media (max-width: 769px) {
   nav {
-    max-width: 600px;
+    width: 100%;
+    max-width: calc(100% - 24px);
     transition: border-radius 0.3s ease;
   }
 

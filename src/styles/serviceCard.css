@@ -119,6 +119,7 @@
     flex-direction: column;
     padding: 16px;
     align-items: flex-start;
+    margin: 0;
   }
 
   .serviceText {
@@ -144,6 +145,11 @@
   .serviceText .description .emoji-list li {
     font-size: 16px;
     gap: 8px;
+  }
+
+  .splide__pagination {
+    bottom: -12px;
+    position: absolute;
   }
 }
 
@@ -171,5 +177,10 @@
   .serviceText .description .emoji-list li {
     font-size: 14px;
     gap: 6px;
+  }
+
+    .splide__pagination {
+    bottom: -32px;
+    position: absolute;
   }
 }
