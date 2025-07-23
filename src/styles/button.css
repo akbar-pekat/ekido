@@ -1,0 +1,50 @@
+/* Base button */
+.button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 99px;
+}
+
+/* Color variants */
+.button.blue {
+  background-color: #5150e3;
+}
+
+.button.yellow,
+.button.yellowAlt {
+  background-color: #d9ff63;
+}
+
+/* Label styling */
+.button .label {
+  font-family: "General Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: normal;
+  text-decoration: underline;
+  text-align: right;
+}
+
+/* Label color overrides */
+.button.blue .label {
+  color: #ffffff;
+}
+.button.yellow .label {
+  color: #050530;
+}
+.button.yellowAlt .label {
+  color: #5150e3;
+}
+
+/* =========================
+   Tablet Styles
+   (max-width: 768px)
+   ========================= */
+@media (max-width: 769px) {
+  .button .label {
+    font-size: 16px;
+  }
+}

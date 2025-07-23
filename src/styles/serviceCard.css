@@ -1,0 +1,175 @@
+.serviceCard {
+  background: #f6f5f8;
+  border-radius: 20px;
+  padding: 24px 20px;
+  margin: 0 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
+}
+
+.serviceImage {
+  background: lightgray;
+  border-radius: 12px;
+  width: 100%;
+  aspect-ratio: 26 / 23;
+  position: relative;
+  object-fit: cover;
+}
+
+.serviceText {
+  display: flex;
+  gap: 32px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.serviceText h3 {
+  color: #050530;
+  text-align: left;
+  font-family: "Parkinsans", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.serviceText .description {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.serviceText .description p {
+  color: #5150e3;
+  text-align: left;
+  font-family: "General Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.serviceText .description p:nth-child(2) {
+  font-weight: 700;
+}
+
+.serviceText .description .emoji-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.serviceText .description .emoji-list li {
+  color: #5150e3;
+  text-align: left;
+  font-family: "General Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.serviceText .description .emoji-list .emoji {
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.splide__pagination {
+  bottom: -32px;
+  position: absolute;
+}
+
+/* Responsive styles for tablet */
+@media (max-width: 1024px) {
+  .serviceCard {
+    padding: 20px 16px;
+    gap: 16px;
+  }
+
+  .serviceText {
+    gap: 24px;
+  }
+
+  .serviceText h3 {
+    font-size: 28px;
+  }
+
+  .serviceText .description {
+    gap: 12px;
+  }
+
+  .serviceText .description p {
+    font-size: 18px;
+  }
+
+  .serviceText .description .emoji-list li {
+    font-size: 18px;
+  }
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 768px) {
+  .serviceCard {
+    flex-direction: column;
+    padding: 16px;
+    align-items: flex-start;
+  }
+
+  .serviceText {
+    gap: 12px;
+  }
+
+  .serviceText h3 {
+    font-size: 20px;
+  }
+
+  .serviceText .description {
+    gap: 8px;
+  }
+
+  .serviceText .description p {
+    font-size: 16px;
+  }
+
+  .serviceText .description .emoji-list {
+    gap: 8px;
+  }
+
+  .serviceText .description .emoji-list li {
+    font-size: 16px;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 391px) {
+  .serviceCard {
+    margin: 0;
+  }
+
+  .serviceText h3 {
+    font-size: 20px;
+  }
+
+  .serviceText .description {
+    gap: 8px;
+  }
+
+  .serviceText .description p {
+    font-size: 14px;
+  }
+
+  .serviceText .description .emoji-list {
+    gap: 6px;
+  }
+
+  .serviceText .description .emoji-list li {
+    font-size: 14px;
+    gap: 6px;
+  }
+}

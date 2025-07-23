@@ -1,0 +1,307 @@
+---
+import "../styles/service.css";
+import ServiceCard from "../components/serviceCard.astro";
+---
+
+<div class="serviceSection" id="jasakami">
+  <div class="headerSection">
+    <h2>Jasa Kami</h2>
+  </div>
+
+  <section class="splide" id="serviceSplide">
+    <div class="splide__arrows">
+      <button class="splide__arrow splide__arrow--prev">
+        <div class="arrowRight">
+          <svg
+            width="7"
+            height="11"
+            viewBox="0 0 7 11"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 2.11803C0 1.37465 0.782313 0.891156 1.44721 1.22361L8.21114 4.60557C8.94819 4.9741 8.94819 6.0259 8.21115 6.39443L1.44722 9.77639C0.782315 10.1088 0 9.62535 0 8.88197V2.11803Z"
+              fill="#5150E3"></path>
+          </svg>
+        </div>
+      </button>
+      <button class="splide__arrow splide__arrow--next">
+        <div class="arrowRight">
+          <svg
+            width="7"
+            height="11"
+            viewBox="0 0 7 11"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 2.11803C0 1.37465 0.782313 0.891156 1.44721 1.22361L8.21114 4.60557C8.94819 4.9741 8.94819 6.0259 8.21115 6.39443L1.44722 9.77639C0.782315 10.1088 0 9.62535 0 8.88197V2.11803Z"
+              fill="#5150E3"></path>
+          </svg>
+        </div>
+      </button>
+    </div>
+
+    <div class="splide__track">
+      <ul class="splide__list">
+        <li class="splide__slide">
+          <ServiceCard
+            imageSrc="/image7.png"
+            title="Video Editing"
+            description1="Short-form video bukan sekadar potong-tempel. Butuh ritme, emosi, dan visual yang bikin scroll jadi stop."
+            description2="Kami bantu kamu edit video pendek yang engaging, nempel di kepala, dan pastinya siap tampil di FYP."
+          />
+        </li>
+        <li class="splide__slide">
+          <ServiceCard
+            imageSrc="/image6.png"
+            title="Content Plan"
+            description1="Gak usah khawatir kontenmu gak otentik—kita pastikan tetap sesuai gayamu!"
+            description2="Jasa Content Plan dari Ekido bantu kamu bikin ide konten yang relevan, unik, dan cocok dengan niche kamu."
+          />
+        </li>
+        <li class="splide__slide">
+          <ServiceCard
+            imageSrc="/image5.png"
+            title="Scriptwriting"
+            description1="Bikin konten itu gampang. Tapi bikin yang nempel di kepala? Butuh skrip yang kuat."
+            description2="Di Ekido, kami bantu kamu menulis skrip video pendek yang hooking, engaging, dan tetap sesuai gaya kamu."
+          />
+        </li>
+        <li class="splide__slide">
+          <ServiceCard
+            imageSrc="/image4.png"
+            title="Visual Design"
+            description1="Desain yang estetik, komunikatif, dan tetap sesuai sama identitas kamu."
+            description2="✅ Desain IG Feed ✅ Thumbnail/Cover ✅ Materi promosi digital (flyer, banner, katalog, poster, infografik)"
+          />
+        </li>
+        <li class="splide__slide">
+          <ServiceCard
+            imageSrc="/image3.png"
+            title="Talent"
+            description1="Mau ngonten...tapi kamu gak nyaman di depan kamera? Tenang—biar tim talent kami yang bantu buatkan konten."
+            description2="🤩 Video Talent 🎤 Voice Talent 🤖 AI Video/Voice Talent"
+          />
+        </li>
+        <li class="splide__slide">
+          <ServiceCard
+            imageSrc="/image2.png"
+            title="Socmed Manager"
+            description1="Desain yang estetik, komunikatif, dan tetap sesuai sama identitas kamu."
+            description2="Jasa Full Managerial Akun Sosial Media, memastikan akun-mu/bisnis-mu bertumbuh."
+          />
+        </li>
+        <li class="splide__slide">
+          <ServiceCard
+            imageSrc="/image2.png"
+            title="Socmed Manager"
+            description1="Jasa Full Managerial Akun Sosial Media, memastikan akun-mu/bisnis-mu bertumbuh."
+            description2="📱Admin 🚀 META Ads 📈 Strategy & Report"
+          />
+        </li>
+        <li class="splide__slide">
+          <ServiceCard
+            imageSrc="/image1.png"
+            title="Jasa Lainnya"
+            description1="Belum menemukan yang kamu butuhkan? Ekido juga menangani kebutuhan lainnya by request:"
+            description2="✅ Offline Shooting ✅ AI Studio ✅ Branding "
+            buttonColor="blue"
+            buttonText="Mulai Konsultasi"
+          />
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="footerSection">
+    <p>Dipercaya oleh 250+ influencer dan 75+ brand di Indonesia:</p>
+    <div class="brandsContainer">
+      <div class="brandsSlide">
+        <img src="/pertamina.png" alt="brand-1" />
+        <img src="/alphaivf.png" alt="brand-2" />
+        <img src="/ddpillow.png" alt="brand-3" />
+        <img src="/xlaxiata.png" alt="brand-4" />
+        <img src="/seefluencer.png" alt="brand-5" />
+        <img src="/danone.png" alt="brand-6" />
+        <!-- Duplicate for seamless loop -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Slider functionality
+  document.addEventListener("DOMContentLoaded", () => {
+    const slider = document.getElementById("serviceSlider");
+    const prevBtn = document.getElementById("prevServiceBtn");
+    const nextBtn = document.getElementById("nextServiceBtn");
+    const indicators = document.querySelectorAll(".indicator");
+
+    let currentIndex = 0;
+    const totalSlides = indicators.length;
+
+    // Function to update the active indicator
+    function updateIndicators() {
+      indicators.forEach((indicator, index) => {
+        if (index === currentIndex) {
+          indicator.classList.add("active");
+        } else {
+          indicator.classList.remove("active");
+        }
+      });
+    }
+
+    // Function to update the slider position
+    function updateSliderPosition() {
+      if (slider) {
+        // Adjust transition for different screen sizes
+        if (window.innerWidth <= 768) {
+          // Possibly different transition for mobile
+          slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        } else {
+          slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+        updateIndicators();
+      }
+    }
+
+    // Initialize the first indicator as active
+    updateIndicators();
+
+    // Event listeners for buttons
+    prevBtn?.addEventListener("click", () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+      } else {
+        currentIndex = totalSlides - 1; // Loop back to the last slide
+      }
+      updateSliderPosition();
+    });
+
+    nextBtn?.addEventListener("click", () => {
+      if (currentIndex < totalSlides - 1) {
+        currentIndex++;
+      } else {
+        currentIndex = 0; // Loop back to the first slide
+      }
+      updateSliderPosition();
+    });
+
+    // Add click events to indicators
+    indicators.forEach((indicator, index) => {
+      indicator.addEventListener("click", () => {
+        currentIndex = index;
+        updateSliderPosition();
+      });
+    });
+
+    // Auto slide functionality
+    let autoSlideInterval: ReturnType<typeof setInterval>;
+
+    function startAutoSlide() {
+      autoSlideInterval = setInterval(() => {
+        if (currentIndex < totalSlides - 1) {
+          currentIndex++;
+        } else {
+          currentIndex = 0;
+        }
+        updateSliderPosition();
+      }, 10000); // Change slide every 10 seconds
+    }
+
+    function stopAutoSlide() {
+      clearInterval(autoSlideInterval);
+    }
+
+    // Start auto sliding
+    startAutoSlide();
+
+    // Pause auto sliding when hovering over the slider
+    slider?.addEventListener("mouseenter", stopAutoSlide);
+    slider?.addEventListener("mouseleave", startAutoSlide);
+  });
+
+  // Function to adjust slider based on screen size
+  function adjustForScreenSize() {
+    const slider = document.getElementById("serviceSlider");
+    const slides = document.querySelectorAll(".serviceSlide");
+
+    if (window.innerWidth <= 768) {
+      // Mobile adjustments
+      slides.forEach((slide) => {
+        (slide as HTMLElement).style.minWidth = "100%";
+      });
+
+      // Reset currentIndex to 0 and update slider position
+      if (slider) {
+        const currentActiveIndex =
+          document
+            .querySelector(".indicator.active")
+            ?.getAttribute("data-index") || 0;
+        slider.style.transform = `translateX(-${Number(currentActiveIndex) * 100}%)`;
+      }
+    } else if (window.innerWidth <= 1024) {
+      // Tablet adjustments
+      slides.forEach((slide) => {
+        (slide as HTMLElement).style.minWidth = "100%";
+      });
+
+      // Reset currentIndex to 0 and update slider position
+      if (slider) {
+        const currentActiveIndex =
+          document
+            .querySelector(".indicator.active")
+            ?.getAttribute("data-index") || 0;
+        slider.style.transform = `translateX(-${Number(currentActiveIndex) * 100}%)`;
+      }
+    } else {
+      // Desktop adjustments
+      slides.forEach((slide) => {
+        (slide as HTMLElement).style.minWidth = "100%";
+      });
+
+      // Reset currentIndex to 0 and update slider position
+      if (slider) {
+        const currentActiveIndex =
+          document
+            .querySelector(".indicator.active")
+            ?.getAttribute("data-index") || 0;
+        slider.style.transform = `translateX(-${Number(currentActiveIndex) * 100}%)`;
+      }
+    }
+  }
+
+  // Call on load and resize
+  adjustForScreenSize();
+  window.addEventListener("resize", adjustForScreenSize);
+
+  // Add click events to indicators
+  document.querySelectorAll(".indicator").forEach((indicator, index) => {
+    indicator.addEventListener("click", () => {
+      const slider = document.getElementById("serviceSlider");
+      if (slider) {
+        slider.style.transform = `translateX(-${index * 100}%)`;
+      }
+      // Remove updateSliderPosition call since it's not accessible in this scope
+      document.querySelectorAll(".indicator").forEach((ind, i) => {
+        if (i === index) {
+          ind.classList.add("active");
+        } else {
+          ind.classList.remove("active");
+        }
+      });
+    });
+  });
+</script>
+
+<script>
+  import Splide from "@splidejs/splide";
+  document.addEventListener("DOMContentLoaded", function () {
+    var splide = new Splide("#serviceSplide", {
+      autoplay: true,
+      type: "loop",
+    });
+    splide.mount();
+  });
+</script>

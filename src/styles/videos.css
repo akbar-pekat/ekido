@@ -1,0 +1,133 @@
+.videosSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 90px 120px 80px;
+  gap: 32px;
+  position: relative;
+  z-index: 3;
+}
+
+.videosSection .headerSection p,
+.videosSection .footerSection p {
+  color: #5150e3;
+  text-align: left;
+  font-family: "General Sans", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  max-width: 1080px;
+}
+
+#videosSplide {
+  width: 100%;
+}
+
+.splide__track {
+  margin: 0 60px;
+}
+
+.splide__arrow {
+  background: transparent;
+}
+
+.arrowLeft,
+.arrowRight {
+  background: #d9ff63;
+  border-radius: 99px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  position: relative;
+  aspect-ratio: 1;
+}
+
+.box {
+  border-radius: 4px;
+  width: 100%;
+  aspect-ratio: 2/3;
+}
+
+.box img,
+.box video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 6px;
+}
+
+.box p {
+  margin-top: 12px;
+  color: #5150e3;
+  text-align: center;
+  font-family: "General Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.videosSection .footerSection {
+  /* margin-top: 20px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* =========================
+   Tablet L Styles
+   (max-width: 1024px)
+   ========================= */
+@media (max-width: 1024px) {
+  .videosSection {
+    padding: 60px 40px;
+    gap: 24px;
+  }
+
+  .videosSection .headerSection p,
+  .videosSection .footerSection p {
+    font-size: 20px;
+    max-width: 800px;
+  }
+}
+
+/* =========================
+   Tablet Styles
+   (max-width: 768px)
+   ========================= */
+@media (max-width: 768px) {
+  .videosSection {
+    padding: 40px 20px;
+  }
+
+  .videosSection .headerSection p,
+  .videosSection .footerSection p {
+    font-size: 16px;
+    max-width: 600px;
+  }
+
+  .videosSection .footerSection {
+    gap: 12px;
+  }
+
+  .videosSection .footerSection p {
+    text-align: center;
+  }
+}
+
+/* =========================
+   Mobile Styles
+   (max-width: 390px)
+   ========================= */
+@media (max-width: 390) {
+  .videosSection {
+    padding: 40px 20px;
+  }
+
+  .videosSection .headerSection p,
+  .videosSection .footerSection p {
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,82 @@
+---
+import "../styles/serviceCard.css";
+import Button from "../components/button.astro";
+
+// Define the interface for the component props
+interface Props {
+  imageSrc: string;
+  title: string;
+  description1: string;
+  description2: string;
+  buttonHref?: string; // Optional, will use default if not provided
+  buttonColor?: string; // Optional, will use default if not provided
+  buttonText?: string; // Optional, will use default if not provided
+}
+
+// Destructure props with default values
+const {
+  imageSrc,
+  title,
+  description1,
+  description2,
+  buttonHref = "http://wa.link/2d3uae", // Default button link
+  buttonColor = "yellowAlt", // Default button color
+  buttonText = "Pesan Sekarang", // Default button text
+} = Astro.props;
+
+// Check if description2 contains emojis for list formatting
+// This regex will match any emoji character at the beginning of a segment
+const emojiRegex = /[\p{Emoji}]/u;
+const hasEmojiList = emojiRegex.test(description2);
+
+// Parse the description into list items if it contains emojis
+let listItems = [];
+if (hasEmojiList) {
+  // First, find all emojis in the text
+  const emojiMatches = [...description2.matchAll(/([\p{Emoji}]+)/gu)];
+  
+  // If we found emojis, split the text by those emojis
+  if (emojiMatches.length > 0) {
+    // Get the positions of all emojis
+    const splitPositions = emojiMatches.map(match => match.index);
+    
+    // Split the text into segments based on emoji positions
+    for (let i = 0; i < splitPositions.length; i++) {
+      const start = splitPositions[i];
+      const end = i < splitPositions.length - 1 ? splitPositions[i + 1] : description2.length;
+      
+      // Get the emoji and the text that follows it
+      const emoji = emojiMatches[i][0];
+      const text = description2.substring(start + emoji.length, end).trim();
+      
+      if (text) {
+        listItems.push({ emoji, text });
+      }
+    }
+  }
+}
+---
+
+<div class="serviceCard">
+  <img class="serviceImage" src={imageSrc} />
+  <div class="serviceText">
+    <h3>{title}</h3>
+    <div class="description">
+      <p>
+        {description1}
+      </p>
+      {hasEmojiList && listItems.length > 0 ? (
+        <ul class="emoji-list">
+          {listItems.map((item) => (
+            <li><span class="emoji">{item.emoji}</span> {item.text}</li>
+          ))}
+        </ul>
+      ) : (
+        <p>
+          {description2}
+        </p>
+      )}
+    </div>
+    <Button href={buttonHref} color={buttonColor}>{buttonText}</Button>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+---
+import "../styles/navbar.css";
+import Button from "../components/button.astro";
+---
+
+<nav>
+  <div class="navContainer">
+    <a class="navLogo" href="#videosSection">
+      <img src="/logo2-svg.svg" alt="Logo Ekido" />
+    </a>
+    <div class="hamburger">
+      <span></span>
+      <!-- <span></span> -->
+      <span></span>
+    </div>
+    <div class="navMenu">
+      <a href="#jasakami" class="menuItem">Jasa Kami</a>
+      <a href="#kenapaekido" class="menuItem">Kenapa Ekido?</a>
+      <a href="#testimoni" class="menuItem">Testimoni</a>
+      <a href="#tentang" class="menuItem">Tentang Ekido</a>
+      <div class="mobileButton">
+        <Button href="http://wa.link/2d3uae" color="yellow">
+          Hubungi Kami
+        </Button>
+      </div>
+    </div>
+    <Button href="http://wa.link/2d3uae" color="yellow"> Hubungi Kami </Button>
+  </div>
+</nav>
+<div class="overlay"></div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector(".navMenu");
+    const overlay = document.querySelector(".overlay");
+    const menuItems = document.querySelectorAll(".menuItem");
+
+    function toggleMenu() {
+      hamburger?.classList.toggle("active");
+      navMenu?.classList.toggle("active");
+      overlay?.classList.toggle("active");
+      document.body.classList.toggle("no-scroll");
+    }
+
+    hamburger?.addEventListener("click", toggleMenu);
+    overlay?.addEventListener("click", toggleMenu);
+
+    menuItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        hamburger?.classList.remove("active");
+        navMenu?.classList.remove("active");
+        overlay?.classList.remove("active");
+        document.body.classList.remove("no-scroll");
+      });
+    });
+  });
+</script>

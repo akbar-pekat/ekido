@@ -1,0 +1,19 @@
+---
+interface Props {
+  href?: string;
+  color?: string;
+}
+
+const {
+  href = "http://wa.link/2d3uae",
+  color = "yellow",
+} = Astro.props;
+
+import "../styles/button.css";
+---
+
+<a href={href} target="_blank" class={`button ${color}`}>
+  <div class="label">
+    <slot />
+  </div>
+</a>
