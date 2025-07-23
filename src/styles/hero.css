@@ -132,6 +132,7 @@
 
   .heroSection .textContainer .heading h1 {
     font-size: 36px;
+    text-wrap: nowrap;
   }
 
   .heroSection .textContainer .heading .textLogo {
