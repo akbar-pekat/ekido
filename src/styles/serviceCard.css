@@ -127,7 +127,7 @@
     flex-direction: column;
     padding: 16px;
     align-items: flex-start;
-    margin: 0 60px;
+    margin: 0;
   }
 
   .serviceImage {
@@ -162,9 +162,7 @@
 
 @media (max-width: 391px) {
   .serviceCard {
-    /* margin: 0; */
-        margin: 0 50px;
-
+    margin: 0;
   }
 
   .serviceText h3 {
