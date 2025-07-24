@@ -1,0 +1,93 @@
+---
+import "../styles/testimoni.css";
+import TestimoniCard from "../components/testimoniCard.astro";
+
+const testimonials = [
+  {
+    avatarSrc:
+      "https://res.cloudinary.com/sinemaxpekat/image/upload/f_auto,q_auto/v1753344431/Ekido/Avatar/dr.adit_izwcyj.jpg",
+    name: "dr. Adit",
+    username: "adityaspratama",
+    followers: "1m",
+    feedbackText:
+      "Sebagai seorang dokter, waktu saya sangat terbatas. Tapi Ekido benar-benar membantu saya dengan hasil video yang berkualitas, proses yang cepat, dan tim yang komunikatif. Mereka ngerti banget apa yang saya butuhkan, dan hasil akhirnya selalu memuaskan. Profesional dan bisa diandalkan!",
+  },
+  {
+    avatarSrc:
+      "https://res.cloudinary.com/sinemaxpekat/image/upload/f_auto,q_auto/v1753344431/Ekido/Avatar/gibran_qhbknt.jpg",
+    name: "Gibran",
+    username: "muhammadddgibran",
+    followers: "45,6k",
+    feedbackText:
+      "Ekido itu editannya keren keren jadi buat reels gw makin upgrade kualitasnya",
+  },
+  {
+    avatarSrc:
+      "https://res.cloudinary.com/sinemaxpekat/image/upload/f_auto,q_auto/v1753344431/Ekido/Avatar/jason_speq0f.jpg",
+    name: "Jason Nath",
+    username: "jsnnath",
+    followers: "78.5K",
+    feedbackText:
+      "Ekido selalu kasih hasil di atas ekspektasi. Fast response, quality top-notch, dan bener-bener ngerti kebutuhan saya sebagai client. Gak pernah nyesel kerja bareng Ekido.",
+  },
+  {
+    avatarSrc:
+      "https://res.cloudinary.com/sinemaxpekat/image/upload/f_auto,q_auto/v1753344433/Ekido/Avatar/albert_grc23e.jpg",
+    name: "Albert",
+    username: "bangalbert.id",
+    followers: "20,4k",
+    feedbackText:
+      "Ekido partner yang tepat untuk membuat reels FYP. Harga sangat Good Deal. Sukses terus Ekido!",
+  },
+  {
+    avatarSrc:
+      "https://res.cloudinary.com/sinemaxpekat/image/upload/f_auto,q_auto/v1753345161/Ekido/Avatar/hans_o8gcjs.jpg",
+    name: "Hans",
+    username: "hansboling",
+    followers: "265k",
+    feedbackText:
+      "Ekido sangat membantu proses editing video khususnya untuk reels, proses komunikasi baik, pengerjaan juga tergolong cepat dan sesuai dengan brief yang dibuat, gak pelit revisi juga kalau ada yang perlu dirubah dari draft",
+  },
+  {
+    avatarSrc:
+      "https://res.cloudinary.com/sinemaxpekat/image/upload/f_auto,q_auto/v1753345161/Ekido/Avatar/adriel_nwphlj.jpg",
+    name: "Adriel",
+    username: "adrielreith",
+    followers: "356K",
+    feedbackText:
+      "Hasil editan oke! Mereka juga tanggung jawab kalo misal ada miss dari mereka misal salah ikutin brief.. Thank you Ekido!!",
+  },
+  {
+    avatarSrc:
+      "https://res.cloudinary.com/sinemaxpekat/image/upload/f_auto,q_auto/v1753345161/Ekido/Avatar/ezra_zhr9fd.webp",
+    name: "Ezra Libertino",
+    username: "",
+    followers: "",
+    feedbackText:
+      "Terbantu banget dengan editing Shorts Ekido yang cepat dan profesional, dengan harga terjangkau. Semoga bisa bantu lebih banyak kreator lokal kedepannya.",
+  },
+];
+
+const allTestimonials = [...testimonials, ...testimonials];
+---
+
+<div class="testimoniSection" id="testimoni">
+  <div class="headerSection">
+    <h3>Apa Kata Mereka</h3>
+  </div>
+  <div class="testimoni-slider-container">
+    <div class="testimoniCardSection">
+      {
+        allTestimonials.map((testimonial) => (
+          <TestimoniCard
+            avatarSrc={testimonial.avatarSrc}
+            name={testimonial.name}
+            username={testimonial.username}
+            followers={testimonial.followers}
+            feedbackText={testimonial.feedbackText}
+          />
+        ))
+      }
+    </div>
+  </div>
+</div>

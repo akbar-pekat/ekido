@@ -1,0 +1,115 @@
+---
+import "../styles/faq.css";
+
+// Data FAQ dinamis
+const faqItems = [
+  {
+    question: "Saya belum pernah bikin konten. Ekido bisa bantu dari nol?",
+    answer: [
+      "Tentu! Kami bantu dari brainstorming ide, riset tren, sampai editing.",
+      "Bahkan jika Anda adalah pemilik bisnis dan tidak ingin muncul depan kamera, kami bisa membantu marketing sosial media anda tanpa keterlibatan lebih 👍🏼"
+    ]
+  },
+  {
+    question: "Saya butuh hasil cepat. Berapa lama proses editing di Ekido?",
+    answer: [
+      "Waktu pengerjaan normal 2-4 hari kerja per video. Kami juga punya layanan ekspres kalau Anda perlu super cepat — tinggal request!"
+    ]
+  },
+  {
+    question: "Apakah video yang dibuat bebas copyright?",
+    answer: [
+      "100% aman. Semua aset visual, musik, dan footage yang kami gunakan bebas copyright atau sudah disesuaikan dengan ketentuan lisensi komersial."
+    ]
+  },
+  {
+    question:
+      "Saya ada permintaan tertentu untuk video, seperti format pengiriman, font, warna dan lainnya — apakah bisa?",
+    answer: [
+      "Kami fleksibel dan akan menyesuaikan dengan kebutuhan Anda, cukup sampaikan dan diskusikan saja dengan tim Ekido — semua beres 👍🏼",
+      "Pastikan masih sesuai dengan kebijakan kami dalam ruang lingkup pekerjaan serta tidak menyangkut konten SARA, pornografi, perjudian dan konten terlarang lainnya."
+    ]
+  },
+  {
+    question: "Apakah bisa kerja sama jangka panjang?",
+    answer: [
+      "Bisa banget! Kami terbuka untuk kerja sama bulanan, retainer, atau project-based. Bahkan kami bisa bantu bangun sistem konten yang rutin dan scalable untuk kebutuhan brand atau kreator Anda.",
+      { type: "link", text: "Silahkan berkunjung ke page berikut", url: "https://ekidocreative.notion.site/Kerjasama-dengan-Ekido-22efbe49e9e08152be05f7c80c52c168" }
+    ]
+  },
+  {
+    question: "Berapa harga jasa Ekido?",
+    answer: [
+      "Silahkan hubungi tim kami untuk penawaran lebih lanjut 🙌🏼"
+    ]
+  },
+];
+---
+
+<div class="faqSection">
+  <div class="headerSection">
+    <h3>Pertanyaan Umum</h3>
+  </div>
+
+  <div class="faqList">
+    {
+      faqItems.map((item) => (
+        <div class="faq-item">
+          <div class="question">
+            <h3>{item.question}</h3>
+            <div class="icon">+</div>
+          </div>
+          <div class="answer">
+            {
+              item.answer.map((answerItem) => {
+                if (typeof answerItem === "string") {
+                  return <p>{answerItem}</p>;
+                } else if (answerItem.type === "link") {
+                  return (
+                    <p>
+                      <a href={answerItem.url} target="_blank" rel="noopener noreferrer">
+                        {answerItem.text}
+                      </a>
+                    </p>
+                  );
+                }
+              })
+            }
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const faqItems = document.querySelectorAll(".faq-item");
+
+    // Sembunyikan semua jawaban saat halaman dimuat
+    faqItems.forEach((item) => {
+      const answer = item.querySelector(".answer");
+      const icon = item.querySelector(".icon");
+
+      if (answer) answer.classList.add("collapsed");
+      if (icon) icon.textContent = "▼";
+    });
+
+    const questions = document.querySelectorAll(".question");
+    questions.forEach((question) => {
+      question.addEventListener("click", () => {
+        const faqItem = question.parentElement;
+        const answer = faqItem?.querySelector(".answer");
+        const icon = question.querySelector(".icon");
+
+        if (answer) answer.classList.toggle("collapsed");
+
+        if (answer?.classList.contains("collapsed")) {
+          if (icon) icon.textContent = "▼";
+        } else {
+          if (icon) icon.textContent = "—";
+        }
+      });
+    });
+  });
+</script>

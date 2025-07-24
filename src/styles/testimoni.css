@@ -1,0 +1,139 @@
+.testimoniSection {
+  background: #d9ff63;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 90px 120px 80px;
+  gap: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.testimoniSection .headerSection h3 {
+  color: #050530;
+  text-align: center;
+  font-family: "Parkinsans", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.testimoni-slider-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.testimoni-slider-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100%;
+  background: linear-gradient(to right, #d9ff63 0%, rgba(217, 255, 99, 0) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.testimoni-slider-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100%;
+  background: linear-gradient(to left, #d9ff63 0%, rgba(217, 255, 99, 0) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.testimoniCardSection {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  align-items: center;
+  animation: scrollTestimoni 30s linear infinite;
+  width: max-content;
+}
+
+@keyframes scrollTestimoni {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.testimoni-slider-container:hover .testimoniCardSection {
+  animation-play-state: paused;
+}
+
+.testimoniCardSection {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  align-items: stretch;
+  animation: scrollTestimoni 30s linear infinite;
+  width: max-content;
+}
+
+@media screen and (max-width: 1024px) {
+  .testimoniSection {
+    padding: 70px 80px 60px;
+  }
+
+  .testimoniSection .headerSection h3 {
+    font-size: 36px;
+  }
+
+  .testimoni-slider-container::before,
+  .testimoni-slider-container::after {
+    width: 80px;
+  }
+
+  .testimoniCardSection {
+    gap: 24px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .testimoniSection {
+    padding: 60px 40px 50px;
+  }
+
+  .testimoniSection .headerSection h3 {
+    font-size: 32px;
+  }
+
+  .testimoni-slider-container::before,
+  .testimoni-slider-container::after {
+    width: 60px;
+  }
+
+  .testimoniCardSection {
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .testimoniSection {
+    padding: 40px 20px 30px;
+  }
+
+  .testimoniSection .headerSection h3 {
+    font-size: 28px;
+  }
+
+  .testimoni-slider-container::before,
+  .testimoni-slider-container::after {
+    width: 20px;
+  }
+
+  .testimoniCardSection {
+    gap: 16px;
+  }
+}
