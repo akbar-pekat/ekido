@@ -1,0 +1,32 @@
+---
+import "../styles/testimoniCard.css";
+
+interface Props {
+  avatarSrc: string;
+  name: string;
+  username: string;
+  followers: string;
+  feedbackText: string;
+}
+
+const {
+  avatarSrc = "/assets/images/avatar.png",
+  name,
+  username,
+  followers,
+  feedbackText,
+} = Astro.props;
+---
+
+<div class="testimoniCard">
+  <div class="clientInfo">
+    <img src={avatarSrc} alt={`${name} avatar`} class="avatar" />
+    <div class="clientName">
+      <h4 class="name">{name} (@{username})</h4>
+      <p class="followers">{followers} Followers</p>
+    </div>
+  </div>
+  <div class="feedback">
+    "{feedbackText}"
+  </div>
+</div>
