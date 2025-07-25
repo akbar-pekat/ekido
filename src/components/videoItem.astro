@@ -1,0 +1,30 @@
+---
+interface Props {
+  src: string;
+  poster?: string;
+  username: string;
+  views?: string;
+  description?: string;
+}
+
+const {
+  src,
+  poster = "",
+  username,
+  views = "",
+  description = "",
+} = Astro.props;
+
+import Video from "./video.astro";
+---
+
+<div class="box">
+  <Video src={src} poster={poster} />
+  <div class="text">
+    <p>
+      {username}
+      {views && <>| {views} Views</>}
+    </p>
+    {description && <p>{description}</p>}
+  </div>
+</div>

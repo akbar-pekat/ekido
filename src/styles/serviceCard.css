@@ -86,6 +86,40 @@
   position: absolute;
 }
 
+@media (min-width:1025px) and (max-width: 1172px) {
+  .serviceCard {
+    padding: 20px 16px;
+    gap: 16px;
+    margin: 0 60px;
+  }
+
+  .serviceImage {
+    width: 50%;
+    aspect-ratio: 1/1;
+  }
+
+  .serviceText {
+    gap: 24px;
+    flex-shrink: 1;
+  }
+
+  .serviceText h3 {
+    font-size: 28px;
+  }
+
+  .serviceText .description {
+    gap: 12px;
+  }
+
+  .serviceText .description p {
+    font-size: 18px;
+  }
+
+  .serviceText .description .emoji-list li {
+    font-size: 18px;
+  }
+}
+
 /* Responsive styles for tablet */
 @media (max-width: 1024px) {
   .serviceCard {
