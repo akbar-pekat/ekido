@@ -1,6 +1,8 @@
 ---
 import "../styles/videos.css";
 import Button from "../components/button.astro";
+import Video from "../components/video.astro";
+import VideoItem from "../components/videoItem.astro";
 ---
 
 <div class="videosSection" id="videosSection">
@@ -48,101 +50,98 @@ import Button from "../components/button.astro";
     <div class="splide__track">
       <ul class="splide__list">
         <li class="splide__slide">
-          <div class="box">
-            <video
-              src="https://res.cloudinary.com/sinemaxpekat/video/upload/f_auto,q_auto/v1753280576/Ekido/asamlambunk.mp4"
-              autoplay
-              muted
-              loop
-            >
-            </video>
-            <p>@asamlambunk | 54,2k</p>
-          </div>
+          <VideoItem
+            src="https://res.cloudinary.com/sinemaxpekat/video/upload/l_Ekido:wmlogo,w_450,o_70,g_center/f_auto,q_auto/v1753280576/Ekido/asamlambunk.mp4"
+            poster="/asamlambunk_cover.png"
+            username="@asamlambunk"
+            views="54,2K"
+            description="Content Plan + Script + Video Editing"
+          />
         </li>
         <li class="splide__slide">
-          <div class="box">
-            <video
-              src="https://res.cloudinary.com/sinemaxpekat/video/upload/f_auto,q_auto/v1753281750/Ekido/merryclestari_sg5xzw.mp4"
-              autoplay
-              muted
-              loop
-            >
-            </video>
-            <p>@merryclestari | 291k</p>
-          </div>
-        </li>
-        <li class="splide__slide">
-          <div class="box">
-            <video
-              src="https://res.cloudinary.com/sinemaxpekat/video/upload/f_auto,q_auto/v1753281787/Ekido/romario_rage_p1f72q.mp4"
-              autoplay
-              muted
-              loop
-            >
-            </video>
-            <p>@romario_rage | 21,6m</p>
-          </div>
-        </li>
-        <li class="splide__slide">
-          <div class="box">
-            <video
-              src="https://res.cloudinary.com/sinemaxpekat/video/upload/f_auto,q_auto/v1753281818/Ekido/varuuyy_yqx2kp.mp4"
-              autoplay
-              muted
-              loop
-            >
-            </video>
-            <p>@varuuy | 37,8k</p>
-          </div>
+          <VideoItem
+            src="https://res.cloudinary.com/sinemaxpekat/video/upload/f_auto,q_auto/v1753413524/Ekido/doddy.prayogo_2_kvjg4l.mov"
+            poster="/varuuyy_cover.png"
+            username="@doddy.prayogo"
+            views="31,1k"
+            description="Video Editing"
+          />
         </li>
 
         <li class="splide__slide">
-          <div class="box">
-            <video
-              src="https://res.cloudinary.com/sinemaxpekat/video/upload/f_auto,q_auto/v1753289295/Ekido/doddy.prayogo_dlomex.mp4"
-              autoplay
-              muted
-              loop
-            >
-            </video>
-            <p>@doddy.prayogo | 31,1k</p>
-          </div>
+          <VideoItem
+            src="https://res.cloudinary.com/sinemaxpekat/video/upload/l_Ekido:wmlogo,w_450,o_70,g_center/f_auto,q_auto/v1753281750/Ekido/merryclestari_sg5xzw.mp4"
+            poster="/merry_cover.png"
+            username="@merryclestari"
+            views="291K"
+            description="Scriptwriting + Video Editing"
+          />
         </li>
         <li class="splide__slide">
-          <div class="box">
-            <video
-              src="https://res.cloudinary.com/sinemaxpekat/video/upload/f_auto,q_auto/v1753289305/Ekido/jason_f065xa.mov"
-              autoplay
-              muted
-              loop
-            >
-            </video>
-            <p>@jsnnath | 1m</p>
-          </div>
+          <VideoItem
+            src="https://res.cloudinary.com/sinemaxpekat/video/upload/f_auto,q_auto/v1753289305/Ekido/jason_f065xa.mov"
+            poster="/varuuyy_cover.png"
+            username="@jsnnath"
+            views="1M"
+            description="Video Editing"
+          />
+        </li>
+
+        <li class="splide__slide">
+          <VideoItem
+            src="https://res.cloudinary.com/sinemaxpekat/video/upload/l_Ekido:wmlogo,w_700,o_70,g_center/f_auto,q_auto/v1753281787/Ekido/romario_rage_p1f72q.mp4"
+            poster="/romario_cover.png"
+            username="@romario_rage"
+            views="21,6m"
+            description="Content Plan + Video Editing"
+          />
         </li>
         <li class="splide__slide">
-          <div class="box">
-            <video
-              src="https://res.cloudinary.com/sinemaxpekat/video/upload/f_auto,q_auto/v1753289307/Ekido/albert_zif8eb.mov"
-              autoplay
-              muted
-              loop
-            >
-            </video>
-            <p>@bangalbert.id | 1m</p>
-          </div>
+          <VideoItem
+            src="https://res.cloudinary.com/sinemaxpekat/video/upload/f_auto,q_auto/v1753289307/Ekido/albert_zif8eb.mov"
+            poster="/varuuyy_cover.png"
+            username="@bangalbert.id"
+            views="1M"
+            description="Video Editing"
+          />
+        </li>
+
+        <li class="splide__slide">
+          <VideoItem
+            src="https://res.cloudinary.com/sinemaxpekat/video/upload/l_Ekido:wmlogo,w_450,o_70,g_center/f_auto,q_auto/v1753281818/Ekido/varuuyy_yqx2kp.mp4"
+            poster="/varuuyy_cover.png"
+            username="@varuuyy"
+            views="37,8m"
+            description="Scriptwriting + Video Editing"
+          />
         </li>
         <li class="splide__slide">
-          <div class="box">
-            <video
-              src="https://res.cloudinary.com/sinemaxpekat/video/upload/v1753289321/Ekido/hendrikogani_smyvfi.mp4"
-              autoplay
-              muted
-              loop
-            >
-            </video>
-            <p>@hendrikogani | 7,252</p>
-          </div>
+          <VideoItem
+            src="https://res.cloudinary.com/sinemaxpekat/video/upload/f_auto,q_auto/v1753413577/Ekido/hendrikogani_2_nnkxzq.mov"
+            poster="/varuuyy_cover.png"
+            username="@hendrikogani"
+            views="7,252"
+            description="Video Editing"
+          />
+        </li>
+
+        <li class="splide__slide">
+          <VideoItem
+            src="https://res.cloudinary.com/sinemaxpekat/video/upload/f_auto,q_auto/v1753414618/Ekido/tantedianny_ouojre.mov"
+            poster="/varuuyy_cover.png"
+            username="@dianypranata"
+            views="500K"
+            description="Video Editing"
+          />
+        </li>
+        <li class="splide__slide">
+          <VideoItem
+            src="https://res.cloudinary.com/sinemaxpekat/video/upload/f_auto,q_auto/v1753414596/Ekido/kaizen_rbp4nb.mov"
+            poster="/varuuyy_cover.png"
+            username="@kaizenbarbershop"
+            views="20K"
+            description="Video Editing"
+          />
         </li>
       </ul>
     </div>
@@ -164,6 +163,7 @@ import Button from "../components/button.astro";
       autoplay: true,
       type: "loop",
       perPage: 4,
+      perMove: 1,
       gap: "16px",
       pagination: false,
       breakpoints: {
