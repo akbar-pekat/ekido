@@ -1,0 +1,162 @@
+footer {
+  background: #050530;
+  padding: 60px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
+}
+
+.logoSlogan {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.slogan {
+  color: #ffffff;
+  text-align: left;
+  font-family: "General Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  position: relative;
+  align-self: stretch;
+  max-width: 300px;
+}
+
+.slogan strong {
+  font-family: "General Sans", sans-serif;
+  font-weight: 700;
+}
+
+.legalSocials {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.legal {
+  color: #ffffff;
+  text-align: left;
+  font-family: "General Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  position: relative;
+}
+
+.socials {
+  color: #ffffff;
+  text-align: right;
+  font-family: "General Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  position: relative;
+}
+
+.logoSlogan img {
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 1024px) {
+  footer {
+    padding: 50px 60px;
+    gap: 50px;
+  }
+
+  .logoSlogan {
+    gap: 30px;
+  }
+
+  .logoSlogan img {
+    width: 170px;
+    height: auto;
+    display: block;
+  }
+
+  .slogan {
+    font-size: 15px;
+    max-width: 280px;
+  }
+
+  .legal,
+  .socials {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  footer {
+    padding: 40px 40px;
+    gap: 40px;
+  }
+
+  .logoSlogan {
+    gap: 25px;
+  }
+
+  .logoSlogan img {
+    width: 150px;
+  }
+
+  .slogan {
+    font-size: 14px;
+    max-width: 260px;
+  }
+
+  .legalSocials {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .legal,
+  .socials {
+    font-size: 14px;
+  }
+
+  .socials {
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  footer {
+    padding: 30px 20px;
+    gap: 30px;
+  }
+
+  .logoSlogan {
+    gap: 20px;
+  }
+
+  .logoSlogan img {
+    width: 140px;
+  }
+
+  .slogan {
+    font-size: 13px;
+    max-width: 240px;
+  }
+
+  .legalSocials {
+    gap: 15px;
+  }
+
+  .legal,
+  .socials {
+    font-size: 13px;
+  }
+}
