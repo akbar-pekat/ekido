@@ -9,6 +9,8 @@
   justify-content: flex-start;
   align-items: center;
   padding-left: 120px;
+  overflow: hidden;
+  position: relative;
 }
 
 .heroSection .textContainer {
@@ -71,6 +73,16 @@
   width: auto;
 }
 
+.heroSection .asset1 {
+  position: absolute;
+  bottom: -290px;
+  left: -80px;
+  max-height: 100%;
+  width: auto;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
 /* =========================
    Tablet L Styles
    (max-width: 1024px)
@@ -108,6 +120,10 @@
 
   .heroSection .imageContainer img {
     right: -130px;
+  }
+
+  .heroSection .asset1 {
+    display: none;
   }
 }
 

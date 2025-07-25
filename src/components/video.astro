@@ -1,11 +1,18 @@
 ---
 interface Props {
   src: string;
-  poster?: string;
   className?: string;
 }
 
-const { src, poster = "" } = Astro.props;
+const { src = "" } = Astro.props;
 ---
 
-<video src={src} autoplay muted loop poster={poster} preload="none"></video>
+<video
+  src={src}
+  muted
+  loop
+  poster="/videocover.jpg"
+  playsinline
+  preload="none"
+  class="portfolio-video">
+</video>
