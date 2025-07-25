@@ -109,6 +109,10 @@
   .testimoniCardSection {
     gap: 24px;
   }
+
+  .testimoniSection .asset5 {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 768px) {
