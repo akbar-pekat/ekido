@@ -3,6 +3,7 @@ import "../../styles/blogContent.css";
 import Base from "../../layouts/base.astro";
 import Navbar from "../../layouts/navbar.astro";
 import About from "../../layouts/about.astro";
+import Footer from "../../layouts/footer.astro";
 
 import { getAllPosts, getPost } from "../../lib/client";
 
@@ -67,4 +68,5 @@ const formattedDate = post.publishedAt ? formatDate(post.publishedAt) : "";
     <Fragment set:html={post.content.html} />
   </div>
   <About title="Artikel lainnya" />
+  <Footer />
 </Base>
