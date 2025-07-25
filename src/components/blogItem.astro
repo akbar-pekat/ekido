@@ -1,0 +1,25 @@
+---
+import "../styles/blogItem.css";
+
+interface Props {
+  href?: string;
+  imageSrc: string;
+  title: string;
+  preview: string;
+}
+
+const {
+  href,
+  imageSrc = "/siapa.png",
+  title = "Siapa/Apa itu Ekido?",
+  preview = "",
+} = Astro.props;
+---
+
+<a href={href} class="blogItem">
+  <img class="thumbnail" src={imageSrc} alt={title} />
+  <div class="textContainer">
+    <h5 class="title">{title}</h5>
+    <p class="preview">{preview}</p>
+  </div>
+</a>
