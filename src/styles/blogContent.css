@@ -220,7 +220,7 @@
 /* Breakpoint untuk 768px */
 @media screen and (max-width: 768px) {
   .bigThumbnail {
-    padding: 40px 60px;
+    padding: 40px 24px;
     max-height: 400px;
   }
   

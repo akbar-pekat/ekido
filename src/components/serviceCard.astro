@@ -34,21 +34,24 @@ let listItems = [];
 if (hasEmojiList) {
   // First, find all emojis in the text
   const emojiMatches = [...description2.matchAll(/([\p{Emoji}]+)/gu)];
-  
+
   // If we found emojis, split the text by those emojis
   if (emojiMatches.length > 0) {
     // Get the positions of all emojis
-    const splitPositions = emojiMatches.map(match => match.index);
-    
+    const splitPositions = emojiMatches.map((match) => match.index);
+
     // Split the text into segments based on emoji positions
     for (let i = 0; i < splitPositions.length; i++) {
       const start = splitPositions[i];
-      const end = i < splitPositions.length - 1 ? splitPositions[i + 1] : description2.length;
-      
+      const end =
+        i < splitPositions.length - 1
+          ? splitPositions[i + 1]
+          : description2.length;
+
       // Get the emoji and the text that follows it
       const emoji = emojiMatches[i][0];
       const text = description2.substring(start + emoji.length, end).trim();
-      
+
       if (text) {
         listItems.push({ emoji, text });
       }
@@ -58,24 +61,26 @@ if (hasEmojiList) {
 ---
 
 <div class="serviceCard">
-  <img class="serviceImage" src={imageSrc} />
+  <img class="serviceImage" src={imageSrc} alt={title} />
   <div class="serviceText">
     <h3>{title}</h3>
     <div class="description">
       <p>
         {description1}
       </p>
-      {hasEmojiList && listItems.length > 0 ? (
-        <ul class="emoji-list">
-          {listItems.map((item) => (
-            <li><span class="emoji">{item.emoji}</span> {item.text}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>
-          {description2}
-        </p>
-      )}
+      {
+        hasEmojiList && listItems.length > 0 ? (
+          <ul class="emoji-list">
+            {listItems.map((item) => (
+              <li>
+                <span class="emoji">{item.emoji}</span> {item.text}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>{description2}</p>
+        )
+      }
     </div>
     <Button href={buttonHref} color={buttonColor}>{buttonText}</Button>
   </div>

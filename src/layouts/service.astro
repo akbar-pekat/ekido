@@ -117,9 +117,18 @@ import ServiceCard from "../components/serviceCard.astro";
         <img src="/seefluencer.png" alt="brand-5" />
         <img src="/danone.png" alt="brand-6" />
         <!-- Duplicate for seamless loop -->
+        <img src="/pertamina.png" alt="brand-1" />
+        <img src="/alphaivf.png" alt="brand-2" />
+        <img src="/ddpillow.png" alt="brand-3" />
+        <img src="/xlaxiata.png" alt="brand-4" />
+        <img src="/seefluencer.png" alt="brand-5" />
+        <img src="/danone.png" alt="brand-6" />
       </div>
     </div>
   </div>
+  <img src="/asset2.svg" alt="asset2" class="asset2alt" />
+  <img src="/asset3.svg" alt="asset3" class="asset3" />
+  <img src="/asset4.svg" alt="asset4" class="asset4" />
 </div>
 
 <script>
@@ -291,7 +300,7 @@ import ServiceCard from "../components/serviceCard.astro";
   import Splide from "@splidejs/splide";
   document.addEventListener("DOMContentLoaded", function () {
     var splide = new Splide("#serviceSplide", {
-      // autoplay: true,
+      autoplay: true,
       type: "loop",
     });
     splide.mount();

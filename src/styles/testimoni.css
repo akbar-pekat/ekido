@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 90px 120px 80px;
+  padding: 90px 120px 200px;
   gap: 32px;
   position: relative;
   overflow: hidden;
@@ -79,6 +79,17 @@
   align-items: stretch;
   animation: scrollTestimoni 30s linear infinite;
   width: max-content;
+}
+
+.testimoniSection .asset5 {
+  position: absolute;
+  bottom: 0;
+  left: -5px;
+  height: 200px;
+  transform: rotate(40deg);
+  object-fit: cover;
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 @media screen and (max-width: 1024px) {

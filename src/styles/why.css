@@ -1,0 +1,22 @@
+.whySection {
+  padding: 80px 120px;
+  background: #5150e3;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 4;
+  gap: 24px;
+}
+
+.whySection .headerSection h2 {
+  color: #ffffff;
+  font-family: "Parkinsans", sans-serif;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0;
+}

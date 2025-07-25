@@ -1,7 +1,6 @@
 ---
 import "../styles/videos.css";
 import Button from "../components/button.astro";
-import Video from "../components/video.astro";
 import VideoItem from "../components/videoItem.astro";
 ---
 
@@ -52,7 +51,6 @@ import VideoItem from "../components/videoItem.astro";
         <li class="splide__slide">
           <VideoItem
             src="https://res.cloudinary.com/sinemaxpekat/video/upload/l_Ekido:wmlogo,w_450,o_70,g_center/f_auto,q_auto/v1753280576/Ekido/asamlambunk.mp4"
-            poster="/asamlambunk_cover.png"
             username="@asamlambunk"
             views="54,2K"
             description="Content Plan + Script + Video Editing"
@@ -61,7 +59,6 @@ import VideoItem from "../components/videoItem.astro";
         <li class="splide__slide">
           <VideoItem
             src="https://res.cloudinary.com/sinemaxpekat/video/upload/f_auto,q_auto/v1753413524/Ekido/doddy.prayogo_2_kvjg4l.mov"
-            poster="/varuuyy_cover.png"
             username="@doddy.prayogo"
             views="31,1K"
             description="Video Editing"
@@ -71,7 +68,6 @@ import VideoItem from "../components/videoItem.astro";
         <li class="splide__slide">
           <VideoItem
             src="https://res.cloudinary.com/sinemaxpekat/video/upload/l_Ekido:wmlogo,w_450,o_70,g_center/f_auto,q_auto/v1753281750/Ekido/merryclestari_sg5xzw.mp4"
-            poster="/merry_cover.png"
             username="@merryclestari"
             views="291K"
             description="Scriptwriting + Video Editing"
@@ -80,7 +76,6 @@ import VideoItem from "../components/videoItem.astro";
         <li class="splide__slide">
           <VideoItem
             src="https://res.cloudinary.com/sinemaxpekat/video/upload/f_auto,q_auto/v1753289305/Ekido/jason_f065xa.mov"
-            poster="/varuuyy_cover.png"
             username="@jsnnath"
             views="1M"
             description="Video Editing"
@@ -90,7 +85,6 @@ import VideoItem from "../components/videoItem.astro";
         <li class="splide__slide">
           <VideoItem
             src="https://res.cloudinary.com/sinemaxpekat/video/upload/l_Ekido:wmlogo,w_700,o_70,g_center/f_auto,q_auto/v1753281787/Ekido/romario_rage_p1f72q.mp4"
-            poster="/romario_cover.png"
             username="@romario_rage"
             views="21,6M"
             description="Content Plan + Video Editing"
@@ -99,7 +93,6 @@ import VideoItem from "../components/videoItem.astro";
         <li class="splide__slide">
           <VideoItem
             src="https://res.cloudinary.com/sinemaxpekat/video/upload/f_auto,q_auto/v1753289307/Ekido/albert_zif8eb.mov"
-            poster="/varuuyy_cover.png"
             username="@bangalbert.id"
             views="1M"
             description="Video Editing"
@@ -109,7 +102,6 @@ import VideoItem from "../components/videoItem.astro";
         <li class="splide__slide">
           <VideoItem
             src="https://res.cloudinary.com/sinemaxpekat/video/upload/l_Ekido:wmlogo,w_450,o_70,g_center/f_auto,q_auto/v1753281818/Ekido/varuuyy_yqx2kp.mp4"
-            poster="/varuuyy_cover.png"
             username="@varuuyy"
             views="37,8M"
             description="Scriptwriting + Video Editing"
@@ -118,7 +110,6 @@ import VideoItem from "../components/videoItem.astro";
         <li class="splide__slide">
           <VideoItem
             src="https://res.cloudinary.com/sinemaxpekat/video/upload/f_auto,q_auto/v1753413577/Ekido/hendrikogani_2_nnkxzq.mov"
-            poster="/varuuyy_cover.png"
             username="@hendrikogani"
             views="7,252"
             description="Video Editing"
@@ -128,7 +119,6 @@ import VideoItem from "../components/videoItem.astro";
         <li class="splide__slide">
           <VideoItem
             src="https://res.cloudinary.com/sinemaxpekat/video/upload/f_auto,q_auto/v1753414618/Ekido/tantedianny_ouojre.mov"
-            poster="/varuuyy_cover.png"
             username="@dianypranata"
             views="500K"
             description="Video Editing"
@@ -137,7 +127,6 @@ import VideoItem from "../components/videoItem.astro";
         <li class="splide__slide">
           <VideoItem
             src="https://res.cloudinary.com/sinemaxpekat/video/upload/f_auto,q_auto/v1753414596/Ekido/kaizen_rbp4nb.mov"
-            poster="/varuuyy_cover.png"
             username="@kaizenbarbershop"
             views="20K"
             description="Video Editing"
@@ -151,15 +140,15 @@ import VideoItem from "../components/videoItem.astro";
     <Button href="http://wa.link/2d3uae" color="blue">Pesan Sekarang</Button>
     <p>Geser ke bawah untuk lihat jasa & portfolio kami ↓</p>
   </div>
-  <!-- <div class="imageContainer">
-    <img src="/asset2.svg" alt="asset2" class="asset2" />
-  </div> -->
+  <img src="/asset1.svg" alt="asset1" class="asset1alt" />
+  <img src="/asset2.svg" alt="asset2" class="asset2" />
 </div>
 
 <script>
   import Splide from "@splidejs/splide";
+
   document.addEventListener("DOMContentLoaded", function () {
-    var splide = new Splide("#videosSplide", {
+    const splide = new Splide("#videosSplide", {
       autoplay: true,
       type: "loop",
       perPage: 4,
@@ -178,6 +167,44 @@ import VideoItem from "../components/videoItem.astro";
         },
       },
     });
+
+    const videoStates = new WeakMap();
+
+    splide.on("mounted move", () => {
+      const slides = document.querySelectorAll("#videosSplide .splide__slide");
+      const activeIndex = splide.index;
+
+      slides.forEach((slide, index) => {
+        const video = slide.querySelector(".portfolio-video");
+        if (!video) return;
+
+        const state = videoStates.get(video) || { interacted: false };
+
+        if (index === activeIndex && state.interacted) {
+          (video as HTMLVideoElement).play();
+        } else {
+          (video as HTMLVideoElement).pause();
+        }
+      });
+    });
+
+    document.querySelectorAll(".portfolio-video").forEach((video) => {
+      videoStates.set(video, { interacted: false });
+
+      video.addEventListener("mouseenter", () => {
+        (video as HTMLVideoElement).play();
+      });
+
+      video.addEventListener("mouseleave", () => {
+        const state = videoStates.get(video);
+        if (!state.interacted) {
+          state.interacted = true;
+          (video as HTMLVideoElement).loop = true;
+          videoStates.set(video, state);
+        }
+      });
+    });
+
     splide.mount();
   });
 </script>
