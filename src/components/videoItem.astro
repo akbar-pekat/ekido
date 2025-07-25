@@ -21,10 +21,42 @@ import Video from "./video.astro";
 <div class="box">
   <Video src={src} poster={poster} />
   <div class="text">
-    <p>
+    <p class="username">
       {username}
-      {views && <>| {views} Views</>}
+      {
+        views && (
+          <>
+            | <span class="views-highlight">{views} Views</span>
+          </>
+        )
+      }
     </p>
-    {description && <p>{description}</p>}
+    {description && <p class="description-regular">{description}</p>}
   </div>
 </div>
+
+<style>
+  .box .text .username {
+    margin-top: 12px;
+    text-align: center;
+    font-family: "General Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+        color: #5150e3;
+    margin: 8px 0 0;
+  }
+
+  .views-highlight {
+    font-weight: 700;
+    color: #5150e3;
+  }
+
+  .description-regular {
+    margin-top: 4px;
+    text-align: center;
+    font-family: "General Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #050530;
+  }
+</style>

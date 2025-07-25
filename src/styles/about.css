@@ -1,0 +1,103 @@
+.aboutSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 90px 120px 80px;
+  gap: 32px;
+  position: relative;
+  z-index: 3;
+}
+
+.aboutSection .headerSection h3 {
+  color: #050530;
+  text-align: center;
+  font-family: "Parkinsans", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+#aboutSplide {
+  width: 100%;
+}
+
+.splide__track {
+  margin: 0 60px;
+}
+
+.arrowLeft,
+.arrowRight {
+  background: #d9ff63;
+  border-radius: 99px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  position: relative;
+  aspect-ratio: 1;
+}
+
+/* Responsive Styles */
+
+/* Breakpoint untuk 1280px */
+@media screen and (max-width: 1280px) {
+  .aboutSection {
+    padding: 70px 80px 60px;
+    gap: 24px;
+  }
+  
+  .aboutSection .headerSection h3 {
+    font-size: 36px;
+  }
+  
+  .splide__track {
+    margin: 0 40px;
+  }
+}
+
+/* Breakpoint untuk 768px */
+@media screen and (max-width: 768px) {
+  .aboutSection {
+    padding: 50px 20px 40px;
+    gap: 20px;
+  }
+  
+  .aboutSection .headerSection h3 {
+    font-size: 32px;
+  }
+  
+  .splide__track {
+    margin: 0 50px;
+  }
+  
+  .arrowLeft,
+  .arrowRight {
+    width: 22px;
+    padding: 5px;
+  }
+}
+
+/* Breakpoint untuk 390px */
+@media screen and (max-width: 390px) {
+  .aboutSection {
+    padding: 40px 20px 30px;
+    gap: 16px;
+  }
+  
+  .aboutSection .headerSection h3 {
+    font-size: 28px;
+  }
+  
+  .splide__track {
+    margin: 0;
+  }
+  
+  .arrowLeft,
+  .arrowRight {
+    width: 20px;
+    padding: 4px;
+  }
+}

@@ -1,0 +1,70 @@
+---
+import "../../styles/blogContent.css";
+import Base from "../../layouts/base.astro";
+import Navbar from "../../layouts/navbar.astro";
+import About from "../../layouts/about.astro";
+
+import { getAllPosts, getPost } from "../../lib/client";
+
+export async function getStaticPaths() {
+  const data = await getAllPosts();
+  const allPosts = data.publication.posts.edges;
+  return allPosts.map((post) => {
+    return {
+      params: { slug: post.node.slug },
+    };
+  });
+}
+const { slug } = Astro.params;
+const post = await getPost(slug);
+
+// Format tanggal dari ISO ke format yang lebih mudah dibaca
+function formatDate(isoDate: string) {
+  const date = new Date(isoDate);
+  const day = date.getDate();
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "Mei",
+    "Jun",
+    "Jul",
+    "Agu",
+    "Sep",
+    "Okt",
+    "Nov",
+    "Des",
+  ];
+  const month = monthNames[date.getMonth()];
+  const year = date.getFullYear();
+  return `${day} ${month} ${year}`;
+}
+
+const formattedDate = post.publishedAt ? formatDate(post.publishedAt) : "";
+---
+
+<Base>
+  <Navbar />
+  <div
+    class="bigThumbnail"
+    style={`background: url('${post.coverImage?.url}') center/cover no-repeat;`}
+  >
+    <div class="container">
+      <div class="textContainer">
+        <div class="blogData">
+          <div class="publishDate">{formattedDate}</div>
+          <div class="dot">•</div>
+          <div class="readingTime">
+            {post.readTimeInMinutes} min reading time
+          </div>
+        </div>
+        <div class="blogTitle">{post.title}</div>
+      </div>
+    </div>
+  </div>
+  <div class="pageContent">
+    <Fragment set:html={post.content.html} />
+  </div>
+  <About title="Artikel lainnya" />
+</Base>

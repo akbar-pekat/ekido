@@ -127,6 +127,7 @@
     max-width: 100%;
     padding: 20px;
     gap: 16px;
+    min-height: 180px; /* Tambahkan minimum height */
   }
 
   .clientInfo {
@@ -146,6 +147,8 @@
   }
 
   .feedback {
-    font-size: 12px;
+    font-size: 14px; /* Naikkan ukuran font dari 12px */
+    line-height: 1.4; /* Tambahkan line height */
+    max-width: 350px;
   }
 }
