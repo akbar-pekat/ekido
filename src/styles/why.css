@@ -22,14 +22,20 @@
 }
 
 .gridContainer {
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   gap: 30px;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   align-content: center;
-  position: relative;
+  position: relative; */
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
 }
 
 .headerGrid {
@@ -64,21 +70,17 @@
 }
 
 .gridbaseContainer {
+  gap: 24px;
+  height: fit-content;
   border-radius: 20px;
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  flex-shrink: 0;
   position: relative;
-  width: 100%;
 }
 
 /* Feature Container */
 .featureContainer {
   background: #d9ff63;
-  max-width: 570px;
+  grid-area: 1 / 1 / 2 / 3;
 }
 
 .featureList {
@@ -91,7 +93,6 @@
   flex-wrap: wrap;
   align-content: flex-start;
   flex-shrink: 0;
-  width: 550px;
   position: relative;
 }
 
@@ -131,10 +132,11 @@
 /* Trust Container */
 .trustContainer {
   background: #f6f5f8;
-  max-width: 500px;
-  height: 415px;
+  width: calc(100% - 32px);
+  /* max-width: 500px; */
   position: relative;
   overflow: hidden;
+  grid-area: 1 / 3 / 2 / 4;
 }
 
 .trustContainer::before,
@@ -170,9 +172,9 @@
   justify-content: flex-start;
   flex-shrink: 0;
   position: relative;
-  overflow: visible; /* Ubah dari hidden menjadi visible */
+  overflow: visible;
   padding: 10px 0;
-  width: max-content; /* Ubah dari 100% menjadi max-content */
+  width: max-content;
   animation: scrollCards 30s linear infinite;
 }
 
@@ -181,112 +183,18 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(
-      calc(-178px * 5 - 50px)
-    ); /* Sesuaikan dengan jumlah kartu dalam satu set */
+    transform: translateX(calc(-178px * 5 - 50px));
   }
 }
 
-.selebCard {
-  background: #d9ff63;
-  border-radius: 10px;
-  padding: 14px;
-  gap: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  flex-shrink: 0;
-  position: relative;
-  width: fit-content;
-}
-
-.selebProfile {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  position: relative;
-}
-
-.selebAvatar {
-  background: lightgray;
-  border-radius: 4px;
-  flex-shrink: 0;
-  width: 150px;
-  position: relative;
-  object-fit: cover;
-  aspect-ratio: 1;
-  -webkit-user-drag: none;
-}
-
-.selebName {
-  color: #5150e3;
-  text-align: left;
-  font-family: "General Sans", sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  position: relative;
-}
-
-.selebData {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
-}
-
-.selebFollower {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  position: relative;
-}
-
-.selebFollower .number {
-  color: #050530;
-  text-align: left;
-  font-family: "General Sans", sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  position: relative;
-}
-
-.selebFollower .label {
-  color: #7f7fbb;
-  text-align: left;
-  font-family: "General Sans", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  position: relative;
-}
-
-.buttonPlay {
-  background: #5150e3;
-  border-radius: 99px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  position: relative;
-  aspect-ratio: 1;
-}
 /* Trust Container */
 
 /* Experience Container */
 .experienceContainer {
   background: #f6f5f8;
-  max-width: 500px;
   position: relative;
   overflow: hidden;
+  grid-area: 2 / 1 / 3 / 2;
 }
 
 .experienceBody,
@@ -298,11 +206,11 @@
 
 /* Quality Container */
 .qualityContainer {
-  background: #f6f5f8;
-  max-width: 570px;
+  background: #d9ff63;
   position: relative;
   overflow: hidden;
   padding-bottom: 0;
+  grid-area: 2 / 2 / 3 / 4;
 }
 
 .qualityBody {
@@ -311,10 +219,10 @@
   align-items: center;
 }
 
-.qualityContainer img {
+.qualityBody img {
   width: 100%;
   -webkit-user-drag: none;
-  max-width: 330px;
+  max-width: 250px;
   margin: 0 auto;
 }
 /* Quality Container */
@@ -337,39 +245,24 @@
   }
 
   .gridContainer {
-    gap: 20px;
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
   }
 
-  .featureContainer,
-  .qualityContainer {
-    width: 450px;
+  .headerGrid h3 {
+    font-size: 24px;
   }
 
-  .trustContainer,
-  .experienceContainer {
-    width: 300px;
-    height: 410px;
-  }
-
-  .featureList {
-    width: 100%;
-    max-width: 500px;
-  }
-
-  .qualityContainer img {
-    max-width: 235px;
+  .headerGrid p {
+    font-size: 16px;
   }
 
   .whySection .headerSection h2 {
     font-size: 36px;
   }
 
-  .headerGrid h3 {
-    font-size: 28px;
-  }
-
-  .headerGrid p {
-    font-size: 18px;
+  .qualityBody img {
+    max-width: 200px;
   }
 
   .whySection .asset4alt {
@@ -377,24 +270,35 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 769px) {
   .whySection {
     padding: 40px 30px;
   }
 
   .gridContainer {
+    display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 20px;
+    width: 100%;
   }
 
   .gridbaseContainer {
     width: 100%;
-    max-width: 450px;
-    height: fit-content;
+    height: auto;
+  }
+
+  .featureContainer,
+  .trustContainer,
+  .experienceContainer,
+  .qualityContainer {
+    grid-area: unset;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: calc(100% - 40px);
   }
 
   .featureList {
-    width: 100%;
     justify-content: center;
   }
 
@@ -406,10 +310,6 @@
     height: 90px;
   }
 
-  .whySection .headerSection h2 {
-    font-size: 32px;
-  }
-
   .headerGrid h3 {
     font-size: 24px;
   }
@@ -418,8 +318,16 @@
     font-size: 16px;
   }
 
-  .selebAvatar {
-    width: 120px;
+  .whySection .headerSection h2 {
+    font-size: 32px;
+  }
+
+  .trustList {
+    padding: 10px 0;
+  }
+
+  .qualityBody img {
+    max-width: 150px;
   }
 }
 
@@ -434,9 +342,6 @@
 
   .gridbaseContainer {
     padding: 15px;
-    gap: 15px;
-    width: 300px;
-    max-width: calc(100% - 32px);
   }
 
   .featureItem {
@@ -451,10 +356,6 @@
     font-size: 10px;
   }
 
-  .whySection .headerSection h2 {
-    font-size: 28px;
-  }
-
   .headerGrid h3 {
     font-size: 22px;
   }
@@ -463,27 +364,11 @@
     font-size: 14px;
   }
 
-  .selebAvatar {
-    width: 100px;
+  .whySection .headerSection h2 {
+    font-size: 28px;
   }
 
-  .selebName {
-    font-size: 14px;
-  }
-
-  .selebFollower .number {
-    font-size: 14px;
-  }
-
-  .selebFollower .label {
-    font-size: 14px;
-  }
-
-  .buttonPlay {
-    padding: 12px;
-  }
-
-  .trustContainer {
-    min-height: 350px;
+  .qualityBody img {
+    max-width: 120px;
   }
 }
