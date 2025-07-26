@@ -4,6 +4,7 @@ import Base from "../../layouts/base.astro";
 import Navbar from "../../layouts/navbar.astro";
 import About from "../../layouts/about.astro";
 import Footer from "../../layouts/footer.astro";
+import JsonLd from '../../components/JsonLd.astro';
 
 import { getAllPosts, getPost } from "../../lib/client";
 
@@ -43,9 +44,49 @@ function formatDate(isoDate: string) {
 }
 
 const formattedDate = post.publishedAt ? formatDate(post.publishedAt) : "";
+
+// Prepare SEO metadata
+const title = `${post.title} | Ekido Blog`;
+const description =
+  post.subtitle || post.brief || `Artikel oleh ${post.author.name}`;
+const keywords = post.tags
+  ? post.tags.map((tag) => tag.name).join(", ")
+  : "ekido, blog, artikel";
+const ogImage = post.coverImage?.url || "/mascot-svg.svg";
+const canonicalUrl = new URL(
+  `/blog/${slug}`,
+  Astro.site || "https://ekido.com"
+).toString();
+
+// Buat data JSON-LD untuk blog post
+const jsonLdData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.title,
+  "description": post.subtitle || post.brief,
+  "image": post.coverImage?.url,
+  "datePublished": post.publishedAt,
+  "author": {
+    "@type": "Person",
+    "name": post.author.name,
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Ekido",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ekido.id/logo-svg.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": new URL(Astro.url.pathname, Astro.site).href
+  }
+};
 ---
 
-<Base>
+<Base title={post.title} description={post.subtitle || post.brief} keywords={post.tags.map(tag => tag.name).join(', ')} ogImage={post.coverImage?.url}>
+  <JsonLd data={jsonLdData} />
   <Navbar />
   <div
     class="bigThumbnail"

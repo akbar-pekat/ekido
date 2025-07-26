@@ -1,0 +1,121 @@
+.section404 {
+  background: #050530;
+  padding: 120px 200px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.section404 .textContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.section404 .textContainer h3 {
+  color: #ffffff;
+  text-align: center;
+  font-family: "Parkinsans", sans-serif;
+  font-size: 128px;
+  line-height: 100%;
+  font-weight: 700;
+  position: relative;
+}
+
+.section404 .textContainer img {
+  height: 128px;
+  -webkit-user-drag: none;
+}
+
+.section404 .paragraph {
+  color: #ffffff;
+  text-align: center;
+  font-family: "General Sans", sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  position: relative;
+}
+
+/* =========================
+   Tablet L Styles
+   (max-width: 1024px)
+   ========================= */
+@media (max-width: 1024px) {
+  .section404 {
+    padding: 100px 120px 60px;
+    gap: 30px;
+  }
+  
+  .section404 .textContainer h3 {
+    font-size: 96px;
+  }
+  
+  .section404 .textContainer img {
+    height: 96px; /* Setara dengan font-size h3 */
+  }
+  
+  .section404 .paragraph {
+    font-size: 26px;
+  }
+}
+
+/* =========================
+   Tablet Styles
+   (max-width: 768px)
+   ========================= */
+@media (max-width: 768px) {
+  .section404 {
+    padding: 100px 60px 40px;
+    gap: 24px;
+  }
+  
+  .section404 .textContainer {
+    gap: 2px;
+  }
+  
+  .section404 .textContainer h3 {
+    font-size: 72px;
+  }
+  
+  .section404 .textContainer img {
+    height: 72px; /* Setara dengan font-size h3 */
+  }
+  
+  .section404 .paragraph {
+    font-size: 22px;
+  }
+}
+
+/* =========================
+   Mobile Styles
+   (max-width: 390px)
+   ========================= */
+@media (max-width: 390px) {
+  .section404 {
+    padding: 60px 20px 30px;
+    gap: 20px;
+  }
+  
+  .section404 .textContainer {
+    gap: 0px;
+  }
+  
+  .section404 .textContainer h3 {
+    font-size: 56px;
+  }
+  
+  .section404 .textContainer img {
+    height: 56px; /* Setara dengan font-size h3 */
+  }
+  
+  .section404 .paragraph {
+    font-size: 18px;
+  }
+}

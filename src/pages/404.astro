@@ -1,0 +1,25 @@
+---
+import "../styles/404.css";
+import Base from "../layouts/base.astro";
+import Navbar from "../layouts/navbar.astro";
+import Button from "../components/button.astro";
+import Footer from "../layouts/footer.astro";
+---
+
+<Base>
+  <Navbar />
+  <div class="section404">
+    <div class="textContainer">
+      <h3>4</h3>
+      <img src="/mascot-svg.svg" alt="mascot ekido" />
+      <h3>4</h3>
+    </div>
+    <div class="paragraph">
+      Halaman tidak ditemukan nih!
+      <br />
+      Kembali aja ya!
+    </div>
+    <Button href="/" color="yellow" target="_self">Utama</Button>
+  </div>
+  <Footer />
+</Base>
