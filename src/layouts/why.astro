@@ -1,10 +1,148 @@
 ---
 import "../styles/why.css";
+import SelebCard from "../components/selebCard.astro";
 ---
 
 <div class="whySection" id="kenapaekido">
   <div class="headerSection">
     <h2>Kenapa Ekido</h2>
   </div>
+  <div class="gridContainer">
+    <div class="gridbaseContainer featureContainer">
+      <div class="headerGrid">
+        <h3>Fleksibel, Rapih dan Terukur</h3>
+        <p>
+          Kamu yang tentukan, Ekido yang eksekusi
+          <br />
+          Tanpa Ribet, Tanpa Ruwet
+        </p>
+      </div>
+      <div class="featureList">
+        <div class="featureItem">
+          <img class="featureImg" src="videocover.jpg" alt="featureImg" />
+          <p class="featureLabel">Jasa Lengkap</p>
+        </div>
+        <div class="featureItem">
+          <img class="featureImg" src="videocover.jpg" alt="featureImg" />
+          <p class="featureLabel">Professional</p>
+        </div>
+        <div class="featureItem">
+          <img class="featureImg" src="videocover.jpg" alt="featureImg" />
+          <p class="featureLabel">Sistem Notion</p>
+        </div>
+        <div class="featureItem">
+          <img class="featureImg" src="videocover.jpg" alt="featureImg" />
+          <p class="featureLabel">Harga Bersaing</p>
+        </div>
+        <div class="featureItem">
+          <img class="featureImg" src="videocover.jpg" alt="featureImg" />
+          <p class="featureLabel">Keamanan & Kerahasiaan</p>
+        </div>
+        <div class="featureItem">
+          <img class="featureImg" src="videocover.jpg" alt="featureImg" />
+          <p class="featureLabel">Penyimpanan Cloud</p>
+        </div>
+        <div class="featureItem">
+          <img class="featureImg" src="videocover.jpg" alt="featureImg" />
+          <p class="featureLabel">Hemat Waktu, Simpel</p>
+        </div>
+      </div>
+    </div>
 
+    <div class="gridbaseContainer trustContainer">
+      <div class="headerGrid">
+        <h3>Terpercaya</h3>
+        <p>Telah membantu lebih dari 250+ kreator dan 50+ brand.</p>
+      </div>
+      <div class="trustList">
+        <!-- Set pertama kartu -->
+        <SelebCard
+          avatarSrc="videocover.jpg"
+          username="@username"
+          followers="500k"
+          href="https://tiktok.com/@username"
+        />
+        <SelebCard
+          avatarSrc="videocover.jpg"
+          username="@username2"
+          followers="750k"
+          href="https://tiktok.com/@username2"
+        />
+        <SelebCard
+          avatarSrc="videocover.jpg"
+          username="@username3"
+          followers="1.2m"
+          href="https://tiktok.com/@username3"
+        />
+        <SelebCard
+          avatarSrc="videocover.jpg"
+          username="@username4"
+          followers="300k"
+          href="https://tiktok.com/@username4"
+        />
+        <SelebCard
+          avatarSrc="videocover.jpg"
+          username="@username5"
+          followers="2.5m"
+          href="https://tiktok.com/@username5"
+        />
+        <!-- Duplikasi set pertama untuk animasi scroll yang mulus -->
+        <SelebCard
+          avatarSrc="videocover.jpg"
+          username="@username"
+          followers="500k"
+          href="https://tiktok.com/@username"
+        />
+        <SelebCard
+          avatarSrc="videocover.jpg"
+          username="@username2"
+          followers="750k"
+          href="https://tiktok.com/@username2"
+        />
+        <SelebCard
+          avatarSrc="videocover.jpg"
+          username="@username3"
+          followers="1.2m"
+          href="https://tiktok.com/@username3"
+        />
+        <SelebCard
+          avatarSrc="videocover.jpg"
+          username="@username4"
+          followers="300k"
+          href="https://tiktok.com/@username4"
+        />
+        <SelebCard
+          avatarSrc="videocover.jpg"
+          username="@username5"
+          followers="2.5m"
+          href="https://tiktok.com/@username5"
+        />
+      </div>
+    </div>
+
+    <div class="gridbaseContainer experienceContainer">
+      <div class="headerGrid">
+        <h3>Berpengalaman</h3>
+        <p>
+          Telah menyelesaikan 3500+ total proyek, dari ide konten hingga
+          eksekusi dan mencapai FYP.
+        </p>
+      </div>
+      <div class="experienceBody">
+        <img src="/statistik.png" alt="statistik" />
+      </div>
+    </div>
+
+    <div class="gridbaseContainer qualityContainer">
+      <div class="headerGrid">
+        <h3>Kualitas Profesional, Hasil Maksimal</h3>
+        <p>Fokus pada detail & storytelling di setiap frame.</p>
+      </div>
+      <div class="qualityBody">
+        <img src="/iphone.png" alt="iphone" />
+      </div>
+    </div>
+  </div>
+
+  <img src="/asset4.svg" alt="asset4" class="asset4alt" />
 </div>
