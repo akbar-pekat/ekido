@@ -1,0 +1,41 @@
+---
+interface Props {
+  avatarSrc: string;
+  username: string;
+  followers: string;
+  href?: string;
+}
+
+const {
+  avatarSrc = "/videocover.jpg",
+  username = "@asamlambunk",
+  followers = "1.5m",
+  href = "#",
+} = Astro.props;
+---
+
+<div class="selebCard">
+  <div class="selebProfile">
+    <img class="selebAvatar" src={avatarSrc} alt={`${username} avatar`} />
+    <p class="selebName">{username}</p>
+  </div>
+  <div class="selebData">
+    <div class="selebFollower">
+      <div class="number">{followers}</div>
+      <div class="label">Followers</div>
+    </div>
+    <a href={href} class="buttonPlay">
+      <svg
+        width="8"
+        height="10"
+        viewBox="0 0 8 10"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0.5 1.61803C0.5 0.874652 1.28231 0.391156 1.94721 0.723607L8.71114 4.10557C9.44819 4.4741 9.44819 5.5259 8.71115 5.89443L1.94722 9.27639C1.28231 9.60884 0.5 9.12535 0.5 8.38197V1.61803Z"
+          fill="#F6F5F8"></path>
+      </svg>
+    </a>
+  </div>
+</div>
