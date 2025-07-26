@@ -62,8 +62,22 @@ footer {
   font-size: 16px;
   font-weight: 400;
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
+.socials a {
+  color: #ffffff;
+  text-decoration: none;
+  margin-left: 10px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.socials img {
+  width: 24px;
+  height: 24px;
+}
 .logoSlogan img {
   width: auto;
   height: auto;

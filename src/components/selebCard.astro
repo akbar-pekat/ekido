@@ -3,15 +3,26 @@ interface Props {
   avatarSrc: string;
   username: string;
   followers: string;
-  href?: string;
+  platform?: "instagram" | "tiktok";
 }
 
 const {
   avatarSrc = "/videocover.jpg",
   username = "@asamlambunk",
   followers = "1.5m",
-  href = "#",
+  platform = "tiktok",
 } = Astro.props;
+
+const cleanUsername = username.startsWith("@")
+  ? username.substring(1)
+  : username;
+
+let profileUrl;
+if (platform === "instagram") {
+  profileUrl = `https://instagram.com/${cleanUsername}`;
+} else if (platform === "tiktok") {
+  profileUrl = `https://tiktok.com/@${cleanUsername}`;
+}
 ---
 
 <div class="selebCard">
@@ -24,7 +35,12 @@ const {
       <div class="number">{followers}</div>
       <div class="label">Followers</div>
     </div>
-    <a href={href} class="buttonPlay">
+    <a
+      href={profileUrl}
+      class="buttonPlay"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <svg
         width="8"
         height="10"
@@ -42,95 +58,95 @@ const {
 
 <style>
   .selebCard {
-  background: #d9ff63;
-  border-radius: 10px;
-  padding: 14px;
-  gap: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  flex-shrink: 0;
-  position: relative;
-  width: fit-content;
-}
+    background: #d9ff63;
+    border-radius: 10px;
+    padding: 14px;
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+    position: relative;
+    width: fit-content;
+  }
 
-.selebProfile {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  position: relative;
-}
+  .selebProfile {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
 
-.selebAvatar {
-  background: lightgray;
-  border-radius: 4px;
-  flex-shrink: 0;
-  width: 150px;
-  position: relative;
-  object-fit: cover;
-  aspect-ratio: 1;
-  -webkit-user-drag: none;
-}
+  .selebAvatar {
+    background: lightgray;
+    border-radius: 4px;
+    flex-shrink: 0;
+    width: 150px;
+    position: relative;
+    object-fit: cover;
+    aspect-ratio: 1;
+    -webkit-user-drag: none;
+  }
 
-.selebName {
-  color: #5150e3;
-  text-align: left;
-  font-family: "General Sans", sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  position: relative;
-}
+  .selebName {
+    color: #5150e3;
+    text-align: left;
+    font-family: "General Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    position: relative;
+  }
 
-.selebData {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
-}
+  .selebData {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    align-self: stretch;
+    flex-shrink: 0;
+    position: relative;
+  }
 
-.selebFollower {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  position: relative;
-}
+  .selebFollower {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
 
-.selebFollower .number {
-  color: #050530;
-  text-align: left;
-  font-family: "General Sans", sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  position: relative;
-}
+  .selebFollower .number {
+    color: #050530;
+    text-align: left;
+    font-family: "General Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    position: relative;
+  }
 
-.selebFollower .label {
-  color: #7f7fbb;
-  text-align: left;
-  font-family: "General Sans", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  position: relative;
-}
+  .selebFollower .label {
+    color: #7f7fbb;
+    text-align: left;
+    font-family: "General Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    position: relative;
+  }
 
-.buttonPlay {
-  background: #5150e3;
-  border-radius: 99px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  position: relative;
-  aspect-ratio: 1;
-}
+  .buttonPlay {
+    background: #5150e3;
+    border-radius: 99px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    aspect-ratio: 1;
+  }
 </style>
