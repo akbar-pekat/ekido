@@ -2,9 +2,10 @@
 interface Props {
   src: string;
   className?: string;
+  autoplay?: boolean;
 }
 
-const { src = "" } = Astro.props;
+const { src, className = "portfolio-video", autoplay = false } = Astro.props;
 ---
 
 <video
@@ -14,5 +15,7 @@ const { src = "" } = Astro.props;
   poster="/videocover.jpg"
   playsinline
   preload="none"
-  class="portfolio-video">
+  class={className}
+  {...autoplay ? { autoplay: true } : {}}
+>
 </video>
