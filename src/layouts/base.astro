@@ -1,7 +1,25 @@
 ---
 import "../styles/global.css";
-import '@splidejs/splide/css';
-import '@splidejs/splide/css/core';
+import "@splidejs/splide/css";
+import "@splidejs/splide/css/core";
+
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  ogImage?: string;
+  ogType?: string;
+  canonicalUrl?: string;
+}
+
+const {
+  title = "Ekido - Your FYP Partner!",
+  description = "Ekido bantu brand, bisnis & kreator tumbuh dengan konten yang relevan, berdampak, dan tahan lama di FYP.",
+  keywords = "ekido, fyp, content creator, social media, tiktok",
+  ogImage = "https://res.cloudinary.com/apclient/image/upload/v1753514918/ogimage_fphgur.png",
+  ogType = "website",
+  canonicalUrl = Astro.url.href
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -9,9 +27,29 @@ import '@splidejs/splide/css/core';
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/mascot-svg.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Ekido - Your FYP Partner!</title>
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    
+    <!-- SEO Metadata -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <link rel="canonical" href={canonicalUrl} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalUrl} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImage} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
