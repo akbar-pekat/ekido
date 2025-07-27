@@ -115,7 +115,7 @@
    (max-width: 1024px)
    ========================= */
 @media (max-width: 1024px) {
-  .videosSection {
+  .videosSection .container {
     padding: 60px 40px;
     gap: 24px;
   }
@@ -137,7 +137,7 @@
    (max-width: 768px)
    ========================= */
 @media (max-width: 768px) {
-  .videosSection {
+  .videosSection .container {
     padding: 40px 20px;
   }
 
@@ -161,7 +161,7 @@
    (max-width: 390px)
    ========================= */
 @media (max-width: 390) {
-  .videosSection {
+  .videosSection .container {
     padding: 40px 20px;
   }
 
