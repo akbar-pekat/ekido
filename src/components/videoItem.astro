@@ -19,36 +19,61 @@ import Video from "./video.astro";
 ---
 
 <div class="box">
-  <Video src={src} />
-  <div class="text">
-    <p class="username">
+  <div class="video-container">
+    <Video src={src} />
+    <div class="floating-username">
       {username}
-      {
-        views && (
-          <>
-            | <span class="views-highlight">{views} Views</span>
-          </>
-        )
-      }
-    </p>
+    </div>
+    <div class="video-overlay" data-video-src={src} data-username={username}></div>
+  </div>
+  <div class="text">
+    {views && <p class="views-highlight">{views} Views</p>}
     {description && <p class="description-regular">{description}</p>}
   </div>
 </div>
 
+<!-- Video Popup Modal akan ditambahkan via JavaScript -->
+
 <style>
-  .box .text .username {
-    margin-top: 12px;
-    text-align: center;
+  .video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    z-index: 3;
+  }
+</style>
+
+<!-- <style>
+  .box .video-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .box .floating-username {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
     font-family: "General Sans", sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
-        color: #5150e3;
-    margin: 8px 0 0;
+    z-index: 2;
   }
 
   .views-highlight {
     font-weight: 700;
     color: #5150e3;
+    text-align: center;
+    margin: 8px 0 0;
+    font-family: "General Sans", sans-serif;
+    font-size: 16px;
   }
 
   .description-regular {
@@ -58,5 +83,9 @@ import Video from "./video.astro";
     font-size: 14px;
     font-weight: 400;
     color: #050530;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
-</style>
+</style> -->

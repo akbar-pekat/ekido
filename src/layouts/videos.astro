@@ -12,6 +12,9 @@ import VideoItem from "../components/videoItem.astro";
           Ekido spesialis konten pendek (Short-form) untuk TikTok/Instagram
           Reels, cocok untuk akun Brand atau Personal-mu.
         </p>
+        <p id="klik">
+          <small>Klik/hover icon play untuk putar videonya</small>
+        </p>
       </div>
 
       <section class="splide" id="videosSplide">
@@ -139,7 +142,8 @@ import VideoItem from "../components/videoItem.astro";
       </section>
 
       <div class="footerSection">
-        <Button href="http://wa.link/2d3uae" color="blue">Pesan Sekarang</Button
+        <Button href="http://wa.link/2d3uae" color="blue" pulse scaleOnHover
+          >Pesan Sekarang</Button
         >
         <p>Geser ke bawah untuk lihat jasa & portfolio kami ↓</p>
       </div>
@@ -149,6 +153,20 @@ import VideoItem from "../components/videoItem.astro";
   </div>
 </div>
 
+<!-- Tambahkan ini di akhir file, sebelum tag </div> terakhir -->
+<div class="video-popup-modal" id="videoPopupModal">
+  <div class="video-popup-container">
+    <div class="video-popup-header">
+      <div class="video-popup-username" id="popupUsername"></div>
+      <button class="video-popup-close" id="closePopup">&times;</button>
+    </div>
+    <div class="video-popup-content">
+      <video id="popupVideo" controls playsinline></video>
+    </div>
+  </div>
+</div>
+
+<!-- Tambahkan script ini di dalam tag <script> yang sudah ada, setelah splide.mount(); -->
 <script>
   import Splide from "@splidejs/splide";
 
@@ -196,20 +214,108 @@ import VideoItem from "../components/videoItem.astro";
     document.querySelectorAll(".portfolio-video").forEach((video) => {
       videoStates.set(video, { interacted: false });
 
-      video.addEventListener("mouseenter", () => {
-        (video as HTMLVideoElement).play();
-      });
-
-      video.addEventListener("mouseleave", () => {
-        const state = videoStates.get(video);
-        if (!state.interacted) {
-          state.interacted = true;
-          (video as HTMLVideoElement).loop = true;
-          videoStates.set(video, state);
+      // Modifikasi: Tambahkan event listener untuk video-overlay
+      document.querySelectorAll(".video-overlay").forEach((overlay) => {
+        const slide = overlay.closest(".splide__slide");
+        const video = slide?.querySelector(".portfolio-video") as HTMLVideoElement;
+        
+        if (video) {
+          // Event mouseenter pada overlay
+          overlay.addEventListener("mouseenter", () => {
+            video.play();
+          });
+      
+          // Event mouseleave pada overlay
+          overlay.addEventListener("mouseleave", () => {
+            const state = videoStates.get(video);
+            if (state && !state.interacted) {
+              state.interacted = true;
+              video.loop = true;
+              videoStates.set(video, state);
+            }
+          });
         }
       });
     });
 
     splide.mount();
+
+    // Tambahkan kode untuk popup video
+    const videoPopupModal = document.getElementById("videoPopupModal");
+    const popupVideo = document.getElementById("popupVideo");
+    const popupUsername = document.getElementById("popupUsername");
+    const closePopup = document.getElementById("closePopup");
+
+    // Event listener untuk membuka popup
+    document.querySelectorAll(".video-overlay").forEach((overlay) => {
+      overlay.addEventListener("click", (e) => {
+        const videoSrc = overlay.getAttribute("data-video-src");
+        const username = overlay.getAttribute("data-username");
+
+        if (videoSrc && popupVideo) {
+          // Set video source dan username
+          (popupVideo as HTMLVideoElement).src = videoSrc;
+          if (popupUsername) {
+            popupUsername.textContent = username;
+          }
+
+          // Tampilkan popup
+          if (videoPopupModal) {
+            videoPopupModal.classList.add("active");
+          }
+
+          // Play video
+          (popupVideo as HTMLVideoElement).load();
+          (popupVideo as HTMLVideoElement).play();
+
+          // Pause semua video lain
+          document.querySelectorAll(".portfolio-video").forEach((video) => {
+            (video as HTMLVideoElement).pause();
+          });
+
+          // Prevent body scrolling
+          document.body.style.overflow = "hidden";
+        }
+      });
+    });
+
+    // Event listener untuk menutup popup
+    if (closePopup) {
+      closePopup.addEventListener("click", () => {
+        // Sembunyikan popup
+        if (videoPopupModal) {
+          videoPopupModal.classList.remove("active");
+        }
+
+        // Pause dan reset video
+        if (popupVideo) {
+          (popupVideo as HTMLVideoElement).pause();
+          (popupVideo as HTMLVideoElement).currentTime = 0;
+        }
+
+        // Allow body scrolling
+        document.body.style.overflow = "";
+      });
+    }
+
+    // Tutup popup jika klik di luar container
+    if (videoPopupModal) {
+      videoPopupModal.addEventListener("click", (e) => {
+        if (e.target === videoPopupModal) {
+          if (closePopup) {
+            closePopup.click();
+          }
+        }
+      });
+    }
+
+    // Tutup popup dengan tombol ESC
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && videoPopupModal?.classList.contains("active")) {
+        if (closePopup) {
+          closePopup.click();
+        }
+      }
+    });
   });
 </script>

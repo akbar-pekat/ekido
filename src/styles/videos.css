@@ -30,6 +30,11 @@
   max-width: 1080px;
 }
 
+.videosSection .headerSection #klik {
+  color: #000;
+  font-size: 18px;
+}
+
 #videosSplide {
   width: 100%;
 }
@@ -163,5 +168,132 @@
   .videosSection .headerSection p,
   .videosSection .footerSection p {
     font-size: 18px;
+  }
+}
+
+/* VideoItem */
+.box .video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.box .floating-username {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-family: "General Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 2;
+}
+
+.views-highlight {
+  font-weight: 700;
+  color: #5150e3;
+  text-align: center;
+  margin: 8px 0 0;
+  font-family: "General Sans", sans-serif;
+  font-size: 16px;
+}
+
+.description-regular {
+  margin-top: 4px;
+  text-align: center;
+  font-family: "General Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #050530;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Video Popup Modal */
+.video-popup-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.video-popup-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.video-popup-container {
+  position: relative;
+  width: auto; /* Ubah dari 90% menjadi auto */
+  max-width: 450px; /* Ubah dari 800px menjadi 450px untuk format vertikal */
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.video-popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  align-self: stretch;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 8px 8px 0 0;
+  width: 100%; /* Tambahkan width 100% */
+}
+
+.video-popup-username {
+  color: white;
+  font-family: "General Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-left: 12px;
+}
+
+.video-popup-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0 10px;
+}
+
+.video-popup-content {
+  width: 100%;
+  aspect-ratio: 9/16; /* Sudah benar dengan aspect ratio 9:16 */
+  max-height: calc(90vh - 60px);
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+}
+
+.video-popup-content video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .video-popup-container {
+    width: auto; /* Ubah dari 95% menjadi auto */
+    max-width: 350px; /* Tambahkan max-width untuk layar kecil */
+  }
+
+  .video-popup-username {
+    font-size: 16px;
   }
 }
