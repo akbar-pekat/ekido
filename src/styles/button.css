@@ -1,11 +1,13 @@
 /* Base button */
 .button {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   padding: 8px 16px;
   border-radius: 99px;
+  gap: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Color variants */
@@ -39,6 +41,65 @@
   color: #5150e3;
 }
 
+/* WhatsApp icon styling */
+.button .icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button.blue .icon-container svg {
+  color: #ffffff;
+}
+
+.button.yellow .icon-container svg,
+.button.yellowAlt .icon-container svg {
+  color: #050530;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(81, 80, 227, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(81, 80, 227, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(81, 80, 227, 0);
+  }
+}
+
+.button.pulse {
+  animation: pulse 2s infinite;
+}
+
+.button.blue.pulse {
+  animation: pulse 2s infinite;
+}
+
+.button.yellow.pulse,
+.button.yellowAlt.pulse {
+  animation: yellowPulse 2s infinite;
+}
+
+@keyframes yellowPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(217, 255, 99, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(217, 255, 99, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(217, 255, 99, 0);
+  }
+}
+
+/* Scale on hover */
+.button.scale-on-hover:hover {
+  transform: scale(1.05);
+}
+
 /* =========================
    Tablet Styles
    (max-width: 768px)
@@ -46,5 +107,18 @@
 @media (max-width: 769px) {
   .button .label {
     font-size: 16px;
+  }
+  
+  .button .icon-container svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .button.pulse {
+    animation: pulse 2s infinite;
+  }
+  
+  .button.scale-on-hover:hover {
+    transform: scale(1.03);
   }
 }

@@ -1,4 +1,15 @@
+.contentMax-footer {
+  background: #050530;
+  width: 100%;
+}
+
 footer {
+  background: #050530;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+footer .container {
   background: #050530;
   padding: 60px 80px;
   display: flex;

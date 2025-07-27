@@ -1,6 +1,16 @@
-.serviceSection {
-  padding: 80px 120px;
+.contentMax-service {
   background: #5150e3;
+  width: 100%;
+}
+
+.serviceSection {
+  background: #5150e3;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.serviceSection .container {
+  padding: 80px 120px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -108,10 +118,10 @@
 
 @keyframes marquee {
   0% {
-    transform: translateX(100%);
+    transform: translateX(0%);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-200%);
   }
 }
 

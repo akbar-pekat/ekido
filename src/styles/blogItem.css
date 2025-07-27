@@ -121,3 +121,25 @@
     -webkit-line-clamp: 2;
   }
 }
+
+.blogItem.current-article {
+  opacity: 0.5;
+  pointer-events: none;
+  position: relative;
+}
+
+.blogItem.current-article::after {
+  content: "Sedang dibaca";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(5, 5, 48, 0.7);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  z-index: 2;
+  font-family: "General Sans", sans-serif;
+}

@@ -1,4 +1,14 @@
+.contentMax-about {
+  background: #fff;
+  width: 100%;
+}
+
 .aboutSection {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.aboutSection .container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -44,15 +54,15 @@
 
 /* Breakpoint untuk 1280px */
 @media screen and (max-width: 1280px) {
-  .aboutSection {
+  .aboutSection .container {
     padding: 70px 80px 60px;
     gap: 24px;
   }
-  
+
   .aboutSection .headerSection h3 {
     font-size: 36px;
   }
-  
+
   .splide__track {
     margin: 0 40px;
   }
@@ -60,19 +70,19 @@
 
 /* Breakpoint untuk 768px */
 @media screen and (max-width: 768px) {
-  .aboutSection {
+  .aboutSection .container {
     padding: 50px 20px 40px;
     gap: 20px;
   }
-  
+
   .aboutSection .headerSection h3 {
     font-size: 32px;
   }
-  
+
   .splide__track {
     margin: 0 50px;
   }
-  
+
   .arrowLeft,
   .arrowRight {
     width: 22px;
@@ -82,19 +92,19 @@
 
 /* Breakpoint untuk 390px */
 @media screen and (max-width: 390px) {
-  .aboutSection {
+  .aboutSection .container {
     padding: 40px 20px 30px;
     gap: 16px;
   }
-  
+
   .aboutSection .headerSection h3 {
     font-size: 28px;
   }
-  
+
   .splide__track {
     margin: 0;
   }
-  
+
   .arrowLeft,
   .arrowRight {
     width: 20px;

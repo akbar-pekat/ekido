@@ -8,18 +8,18 @@ import Testimoni from "../layouts/testimoni.astro";
 import Faq from "../layouts/faq.astro";
 import About from "../layouts/about.astro";
 import Footer from "../layouts/footer.astro";
-import JsonLd from '../components/JsonLd.astro';
+import JsonLd from "../components/JsonLd.astro";
 
 const jsonLdData = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "Ekido - Your FYP Partner!",
-  "url": Astro.site,
-  "potentialAction": {
+  name: "Ekido - Your FYP Partner!",
+  url: Astro.site,
+  potentialAction: {
     "@type": "SearchAction",
-    "target": `${Astro.site}search?q={search_term_string}`,
-    "query-input": "required name=search_term_string"
-  }
+    target: `${Astro.site}search?q={search_term_string}`,
+    "query-input": "required name=search_term_string",
+  },
 };
 ---
 
