@@ -71,24 +71,28 @@ const testimonials = [
 const allTestimonials = [...testimonials, ...testimonials];
 ---
 
-<div class="testimoniSection" id="testimoni">
-  <div class="headerSection">
-    <h3>Apa Kata Mereka</h3>
-  </div>
-  <div class="testimoni-slider-container">
-    <div class="testimoniCardSection">
-      {
-        allTestimonials.map((testimonial) => (
-          <TestimoniCard
-            avatarSrc={testimonial.avatarSrc}
-            name={testimonial.name}
-            username={testimonial.username}
-            followers={testimonial.followers}
-            feedbackText={testimonial.feedbackText}
-          />
-        ))
-      }
+<div class="contentMax-testimoni">
+  <div class="testimoniSection" id="testimoni">
+    <div class="container">
+      <div class="headerSection">
+        <h3>Apa Kata Mereka</h3>
+      </div>
+      <div class="testimoni-slider-container">
+        <div class="testimoniCardSection">
+          {
+            allTestimonials.map((testimonial) => (
+              <TestimoniCard
+                avatarSrc={testimonial.avatarSrc}
+                name={testimonial.name}
+                username={testimonial.username}
+                followers={testimonial.followers}
+                feedbackText={testimonial.feedbackText}
+              />
+            ))
+          }
+        </div>
+      </div>
+      <img src="/asset5.png" alt="asset5" class="asset5" />
     </div>
   </div>
-  <img src="/asset5.png" alt="asset5" class="asset5" />
 </div>

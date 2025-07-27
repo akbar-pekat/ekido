@@ -1,5 +1,15 @@
+.contentMax-testimoni {
+  background: #d9ff63;
+  width: 100%;
+}
+
 .testimoniSection {
   background: #d9ff63;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.testimoniSection .container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

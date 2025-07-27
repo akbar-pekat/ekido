@@ -1,4 +1,14 @@
+.contentMax-videos {
+  background: #fff;
+  width: 100%;
+}
+
 .videosSection {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.videosSection .container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

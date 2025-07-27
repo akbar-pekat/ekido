@@ -1,22 +1,30 @@
 /* =========================
    Base (Desktop) Styles
    ========================= */
-.heroSection {
-  min-height: 100vh;
+.contentMax-hero {
   background: #5150e3;
+  width: 100%;
+}
+
+.heroSection {
+  background: #5150e3;
+  height: 100vh;
+  max-height: 1080px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  padding-left: 120px;
   overflow: hidden;
   position: relative;
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
 .heroSection .textContainer {
   display: flex;
   flex-direction: column;
   gap: 32px;
+  padding-left: 120px;
 }
 
 .heroSection .textContainer .heading h1 {
