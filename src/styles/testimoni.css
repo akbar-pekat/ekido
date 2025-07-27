@@ -103,7 +103,7 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .testimoniSection {
+  .testimoniSection .container {
     padding: 70px 80px 60px;
   }
 
@@ -126,7 +126,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .testimoniSection {
+  .testimoniSection .container {
     padding: 60px 40px 50px;
   }
 
@@ -145,7 +145,7 @@
 }
 
 @media screen and (max-width: 390px) {
-  .testimoniSection {
+  .testimoniSection .container {
     padding: 40px 20px 30px;
   }
 

@@ -165,7 +165,7 @@
 
 /* Add responsive adjustments */
 @media (max-width: 1024px) {
-  .serviceSection {
+  .serviceSection .container {
     padding: 80px 40px;
   }
 
@@ -191,7 +191,7 @@
 }
 
 @media (max-width: 768px) {
-  .serviceSection {
+  .serviceSection .container {
     padding: 60px 20px;
     gap: 20px;
   }
