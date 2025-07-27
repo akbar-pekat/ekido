@@ -113,8 +113,73 @@ const jsonLdData = {
     </div>
   </div>
   <div class="pageContent">
+    <div class="backButtonContainer">
+      <a href="/" class="backButton">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 12H5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Kembali ke Beranda
+      </a>
+    </div>
     <Fragment set:html={post.content.html} />
+    <div class="backButtonContainer bottom">
+      <a href="/" class="backButton">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 12H5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Kembali ke Beranda
+      </a>
+    </div>
   </div>
-  <About title="Artikel lainnya" />
+  <About title="Artikel lainnya" currentSlug={slug} />
   <Footer />
 </Base>
+
+<style>
+  .backButtonContainer {
+    margin-bottom: 20px;
+  }
+  
+  .backButtonContainer.bottom {
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+  
+  .backButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #5150e3;
+    font-family: "General Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: rgba(81, 80, 227, 0.1);
+    transition: background-color 0.3s ease;
+  }
+  
+  .backButton:hover {
+    background-color: rgba(81, 80, 227, 0.2);
+  }
+  
+  .backButton svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .backButton {
+      font-size: 14px;
+      padding: 6px 12px;
+    }
+    
+    .backButton svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+</style>

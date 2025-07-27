@@ -54,7 +54,7 @@
 
 /* Breakpoint untuk 1280px */
 @media screen and (max-width: 1280px) {
-  .aboutSection {
+  .aboutSection .container {
     padding: 70px 80px 60px;
     gap: 24px;
   }
@@ -70,7 +70,7 @@
 
 /* Breakpoint untuk 768px */
 @media screen and (max-width: 768px) {
-  .aboutSection {
+  .aboutSection .container {
     padding: 50px 20px 40px;
     gap: 20px;
   }
@@ -92,7 +92,7 @@
 
 /* Breakpoint untuk 390px */
 @media screen and (max-width: 390px) {
-  .aboutSection {
+  .aboutSection .container {
     padding: 40px 20px 30px;
     gap: 16px;
   }

@@ -6,6 +6,7 @@ interface Props {
   imageSrc: string;
   title: string;
   preview: string;
+  isCurrentArticle?: boolean; 
 }
 
 const {
@@ -13,10 +14,11 @@ const {
   imageSrc = "/siapa.png",
   title = "Siapa/Apa itu Ekido?",
   preview = "",
+  isCurrentArticle = false,
 } = Astro.props;
 ---
 
-<a href={href} class="blogItem">
+<a href={href} class={`blogItem ${isCurrentArticle ? 'current-article' : ''}`}>
   <img class="thumbnail" src={imageSrc} alt={title} />
   <div class="textContainer">
     <h5 class="title">{title}</h5>
