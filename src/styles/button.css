@@ -52,9 +52,12 @@
   color: #ffffff;
 }
 
-.button.yellow .icon-container svg,
-.button.yellowAlt .icon-container svg {
+.button.yellow .icon-container svg {
   color: #050530;
+}
+
+.button.yellowAlt .icon-container svg {
+  color: #5150e3; /* Mengubah warna icon menjadi biru untuk yellowAlt */
 }
 
 /* Pulse animation */
@@ -100,6 +103,29 @@
   transform: scale(1.05);
 }
 
+/* Shake animation */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  10% { transform: translateX(-5px); }
+  20% { transform: translateX(5px); }
+  30% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  50% { transform: translateX(-5px); }
+  60% { transform: translateX(5px); }
+  70% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
+  90% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.button.shake {
+  animation: shake 0.8s ease;
+}
+
+.button.shake-on-hover:hover {
+  animation: shake 0.8s ease;
+}
+
 /* =========================
    Tablet Styles
    (max-width: 768px)
@@ -121,4 +147,13 @@
   .button.scale-on-hover:hover {
     transform: scale(1.03);
   }
+  
+  .button.shake {
+    animation: shake 0.8s ease;
+  }
+  
+  .button.shake-on-hover:hover {
+    animation: shake 0.8s ease;
+  }
+
 }

@@ -57,7 +57,8 @@ import ServiceCard from "../components/serviceCard.astro";
             </li>
             <li class="splide__slide">
               <ServiceCard
-                imageSrc="/image6.png"
+                useLottie={true}
+                lottieSrc="/pcp.lottie"
                 title="Content Plan"
                 description1="Gak usah khawatir kontenmu gak otentik—kita pastikan tetap sesuai gayamu!"
                 description2="Jasa Content Plan dari Ekido bantu kamu bikin ide konten yang relevan, unik, dan cocok dengan niche kamu."
@@ -66,7 +67,8 @@ import ServiceCard from "../components/serviceCard.astro";
             </li>
             <li class="splide__slide">
               <ServiceCard
-                imageSrc="/image5.png"
+                useLottie={true}
+                lottieSrc="/sw.lottie"
                 title="Scriptwriting"
                 description1="Bikin konten itu gampang. Tapi bikin yang nempel di kepala? Butuh skrip yang kuat."
                 description2="Di Ekido, kami bantu kamu menulis skrip video pendek yang hooking, engaging, dan tetap sesuai gaya kamu."
@@ -75,7 +77,8 @@ import ServiceCard from "../components/serviceCard.astro";
             </li>
             <li class="splide__slide">
               <ServiceCard
-                imageSrc="/image4.png"
+                useLottie={true}
+                lottieSrc="/vd.lottie"
                 title="Visual Design"
                 description1="Desain yang estetik, komunikatif, dan tetap sesuai sama identitas kamu."
                 description2="✅ Desain IG Feed ✅ Thumbnail/Cover ✅ Materi promosi digital (flyer, banner, katalog, poster, infografik)"
@@ -93,7 +96,8 @@ import ServiceCard from "../components/serviceCard.astro";
             </li>
             <li class="splide__slide">
               <ServiceCard
-                imageSrc="/image2.png"
+                useLottie={true}
+                lottieSrc="/sm.lottie"
                 title="Socmed Manager"
                 description1="Desain yang estetik, komunikatif, dan tetap sesuai sama identitas kamu."
                 description2="Jasa Full Managerial Akun Sosial Media, memastikan akun-mu/bisnis-mu bertumbuh."
@@ -102,7 +106,8 @@ import ServiceCard from "../components/serviceCard.astro";
             </li>
             <li class="splide__slide">
               <ServiceCard
-                imageSrc="/image1.png"
+                useLottie={true}
+                lottieSrc="/ot.lottie"
                 title="Jasa Lainnya"
                 description1="Belum menemukan yang kamu butuhkan? Ekido juga menangani kebutuhan lainnya by request:"
                 description2="✅ Offline Shooting ✅ AI Studio ✅ Branding "
@@ -243,3 +248,6 @@ import ServiceCard from "../components/serviceCard.astro";
     }).mount();
   }
 </script>
+<script
+  src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js"
+  type="module"></script>

@@ -92,6 +92,51 @@
   user-select: none;
 }
 
+@media (min-width: 1025px) and (max-width: 1152px) {
+  .heroSection {
+    padding: 80px 0 0 80px;
+    min-height: 80vh;
+  }
+
+  .heroSection .textContainer {
+    margin-top: 0;
+    padding-left: 0;
+  }
+
+  .heroSection .textContainer .heading h1 {
+    font-size: 48px;
+  }
+
+  .heroSection .textContainer .heading .textLogo {
+    gap: 12px;
+  }
+
+  .heroSection .textContainer .heading .textLogo img {
+    height: calc(48px - 12px);
+  }
+
+  .heroSection .textContainer p {
+    font-size: 22px;
+    max-width: 500px;
+  }
+
+  .heroSection .textContainer .downHero {
+    font-size: 20px;
+  }
+
+  .heroSection .imageContainer {
+    min-height: 380px;
+  }
+
+  .heroSection .imageContainer img {
+    right: -130px;
+  }
+
+  .heroSection .asset1 {
+    display: none;
+  }
+}
+
 /* =========================
    Tablet L Styles
    (max-width: 1024px)

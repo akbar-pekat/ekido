@@ -7,13 +7,7 @@ interface Props {
   description?: string;
 }
 
-const {
-  src,
-  poster,
-  username,
-  views,
-  description,
-} = Astro.props;
+const { src, poster, username, views, description } = Astro.props;
 
 import Video from "./video.astro";
 ---
@@ -24,14 +18,14 @@ import Video from "./video.astro";
     <div class="floating-username">
       {username}
     </div>
-    <div class="video-overlay" data-video-src={src} data-username={username}></div>
+    <div class="video-overlay" data-video-src={src} data-username={username}>
+    </div>
   </div>
   <div class="text">
     {views && <p class="views-highlight">{views} Views</p>}
     {description && <p class="description-regular">{description}</p>}
   </div>
 </div>
-
 
 <style>
   .video-overlay {
