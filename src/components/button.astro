@@ -6,6 +6,8 @@ interface Props {
   showWhatsappIcon?: boolean;
   pulse?: boolean;
   scaleOnHover?: boolean;
+  shake?: boolean;
+  shakeOnHover?: boolean;
 }
 
 const {
@@ -15,6 +17,8 @@ const {
   showWhatsappIcon = false,
   pulse = false,
   scaleOnHover = false,
+  shake = false,
+  shakeOnHover = false,
 } = Astro.props;
 
 import "../styles/button.css";
@@ -23,7 +27,7 @@ import "../styles/button.css";
 <a
   href={href}
   target={target}
-  class={`button ${color} ${showWhatsappIcon ? "with-icon" : ""} ${pulse ? "pulse" : ""} ${scaleOnHover ? "scale-on-hover" : ""}`}
+  class={`button ${color} ${showWhatsappIcon ? "with-icon" : ""} ${pulse ? "pulse" : ""} ${scaleOnHover ? "scale-on-hover" : ""} ${shake ? "shake" : ""} ${shakeOnHover ? "shake-on-hover" : ""}`}
 >
   {
     showWhatsappIcon && (

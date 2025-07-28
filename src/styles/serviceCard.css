@@ -21,6 +21,19 @@
   object-fit: cover;
 }
 
+.lottieAnim {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: transparent;
+  border-radius: 12px;
+  aspect-ratio: 26 / 23;
+}
+
+.lottieAnim canvas {
+  border-radius: 12px;
+}
+
 .serviceText {
   display: flex;
   gap: 32px;
@@ -86,7 +99,7 @@
   position: absolute;
 }
 
-@media (min-width:1025px) and (max-width: 1172px) {
+@media (min-width: 1025px) and (max-width: 1172px) {
   .serviceCard {
     padding: 20px 16px;
     gap: 16px;

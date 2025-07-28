@@ -3,13 +3,15 @@ import "../styles/serviceCard.css";
 import Button from "../components/button.astro";
 
 interface Props {
-  imageSrc: string;
+  imageSrc?: string;
   title: string;
   description1: string;
   description2: string;
   buttonHref?: string;
   buttonColor?: string;
   buttonText?: string;
+  useLottie?: boolean;
+  lottieSrc?: string;
 }
 
 const {
@@ -20,6 +22,8 @@ const {
   buttonHref = "http://wa.link/2d3uae",
   buttonColor = "yellowAlt",
   buttonText = "Pesan Sekarang",
+  useLottie = false,
+  lottieSrc,
 } = Astro.props;
 
 /**
@@ -48,7 +52,20 @@ function parseEmojiList(description2: string) {
 ---
 
 <div class="serviceCard">
-  <img class="serviceImage" src={imageSrc} alt={title} />
+  {
+    !useLottie ? (
+      <img class="serviceImage" src={imageSrc} alt={title} />
+    ) : (
+      <dotlottie-wc
+        src={lottieSrc}
+        class="lottieAnim"
+        speed="1"
+        autoplay
+        loop
+        mode="bounce"
+      />
+    )
+  }
   <div class="serviceText">
     <h3>{title}</h3>
     <div class="description">
@@ -69,7 +86,7 @@ function parseEmojiList(description2: string) {
         )
       }
     </div>
-    <Button href={buttonHref} color={buttonColor} pulse scaleOnHover
+    <Button href={buttonHref} color={buttonColor} showWhatsappIcon shakeOnHover={true}
       >{buttonText}
     </Button>
   </div>

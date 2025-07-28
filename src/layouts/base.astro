@@ -18,7 +18,7 @@ const {
   keywords = "ekido, fyp, content creator, social media, tiktok",
   ogImage = "https://res.cloudinary.com/apclient/image/upload/v1753514918/ogimage_fphgur.png",
   ogType = "website",
-  canonicalUrl = Astro.url.href
+  canonicalUrl = Astro.url.href,
 } = Astro.props;
 ---
 
@@ -30,20 +30,20 @@ const {
     <link rel="icon" type="image/svg+xml" href="/mascot-svg.svg" />
     <meta name="generator" content={Astro.generator} />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    
+
     <!-- SEO Metadata -->
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
     <link rel="canonical" href={canonicalUrl} />
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={canonicalUrl} />
@@ -58,6 +58,9 @@ const {
       rel="stylesheet"
     />
     <link href="https://fonts.cdnfonts.com/css/general-sans" rel="stylesheet" />
+    <script
+      src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js"
+      type="module"></script>
   </head>
   <body>
     <slot />
