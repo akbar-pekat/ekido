@@ -10,7 +10,6 @@ import Button from "../components/button.astro";
     </a>
     <div class="hamburger">
       <span></span>
-      <!-- <span></span> -->
       <span></span>
     </div>
     <div class="navMenu">
@@ -24,35 +23,77 @@ import Button from "../components/button.astro";
         </Button>
       </div>
     </div>
-    <Button href="http://wa.link/2d3uae" color="yellow" showWhatsappIcon scaleOnHover> Hubungi Kami </Button>
+    <Button
+      href="http://wa.link/2d3uae"
+      color="yellow"
+      showWhatsappIcon
+      scaleOnHover
+    >
+      Hubungi Kami
+    </Button>
   </div>
 </nav>
 <div class="overlay"></div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const hamburger = document.querySelector(".hamburger");
-    const navMenu = document.querySelector(".navMenu");
-    const overlay = document.querySelector(".overlay");
-    const menuItems = document.querySelectorAll(".menuItem");
+  const SELECTORS = {
+    HAMBURGER: ".hamburger",
+    NAV_MENU: ".navMenu",
+    OVERLAY: ".overlay",
+    MENU_ITEM: ".menuItem",
+  };
+  const CLASSES = {
+    ACTIVE: "active",
+    NO_SCROLL: "no-scroll",
+  };
 
-    function toggleMenu() {
-      hamburger?.classList.toggle("active");
-      navMenu?.classList.toggle("active");
-      overlay?.classList.toggle("active");
-      document.body.classList.toggle("no-scroll");
+  document.addEventListener("DOMContentLoaded", initMenu);
+
+  function initMenu() {
+    const hamburger = document.querySelector(SELECTORS.HAMBURGER);
+    const navMenu = document.querySelector(SELECTORS.NAV_MENU);
+    const overlay = document.querySelector(SELECTORS.OVERLAY);
+
+    if (!hamburger || !navMenu || !overlay) return;
+
+    hamburger.addEventListener("click", toggleMenu);
+    overlay.addEventListener("click", toggleMenu);
+
+    navMenu.addEventListener("click", (e: Event) =>
+      onNavMenuClick(e as MouseEvent)
+    );
+  }
+
+  function toggleMenu() {
+    document
+      .querySelector(SELECTORS.HAMBURGER)
+      ?.classList.toggle(CLASSES.ACTIVE);
+    document
+      .querySelector(SELECTORS.NAV_MENU)
+      ?.classList.toggle(CLASSES.ACTIVE);
+    document.querySelector(SELECTORS.OVERLAY)?.classList.toggle(CLASSES.ACTIVE);
+    document.body.classList.toggle(CLASSES.NO_SCROLL);
+  }
+
+  /**
+   * Handles clicks inside the navMenu:
+   * if a .menuItem (or its child) was clicked, close the menu.
+   * @param {MouseEvent} event - The click event object
+   */
+  function onNavMenuClick(event: MouseEvent) {
+    if ((event.target as Element)?.closest(SELECTORS.MENU_ITEM)) {
+      closeMenu();
     }
+  }
 
-    hamburger?.addEventListener("click", toggleMenu);
-    overlay?.addEventListener("click", toggleMenu);
-
-    menuItems.forEach((item) => {
-      item.addEventListener("click", () => {
-        hamburger?.classList.remove("active");
-        navMenu?.classList.remove("active");
-        overlay?.classList.remove("active");
-        document.body.classList.remove("no-scroll");
-      });
-    });
-  });
+  function closeMenu() {
+    document
+      .querySelector(SELECTORS.HAMBURGER)
+      ?.classList.remove(CLASSES.ACTIVE);
+    document
+      .querySelector(SELECTORS.NAV_MENU)
+      ?.classList.remove(CLASSES.ACTIVE);
+    document.querySelector(SELECTORS.OVERLAY)?.classList.remove(CLASSES.ACTIVE);
+    document.body.classList.remove(CLASSES.NO_SCROLL);
+  }
 </script>

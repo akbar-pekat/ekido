@@ -304,26 +304,70 @@ import Video from "../components/video.astro";
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    function animateCounter(element: HTMLElement, target: string) {
-      const numericTarget = parseInt(target.replace(/\D/g, ""));
-      const suffix = target.replace(/[0-9]/g, "");
+  (function () {
+    const SELECTORS = {
+      COUNTER_NUM: ".counter .number",
+      EXPERIENCE_SECTION: ".experienceBody",
+      VIDEO_COMPARISON: ".video-comparison",
+      COMPARISON_SLIDER: ".comparison-slider",
+      BEFORE_CONTAINER: ".before-container",
+    };
 
-      const duration = 2000;
-      const steps = 50;
-      const stepTime = duration / steps;
+    const COUNTER_CONFIG = {
+      DURATION: 2000,
+      STEPS: 50,
+    };
 
+    let countersAnimated = false;
+    let sliderPosition = 50;
+    let isDragging = false;
+
+    document.addEventListener("DOMContentLoaded", initAll);
+
+    function initAll() {
+      initCounters();
+      initComparisonSlider();
+      window.addEventListener("scroll", onScroll);
+      window.addEventListener("resize", onResize);
+    }
+
+    function initCounters() {
+      const counters = document.querySelectorAll(SELECTORS.COUNTER_NUM);
+      const expSection = document.querySelector(SELECTORS.EXPERIENCE_SECTION);
+      if (!expSection || counters.length === 0) return;
+
+      function tryAnimate() {
+        if (
+          !countersAnimated &&
+          isElementInViewport(expSection as HTMLElement)
+        ) {
+          countersAnimated = true;
+          counters.forEach((counter) => {
+            const targetText = counter.textContent || "0";
+            counter.textContent = "0";
+            animateCounter(counter as HTMLElement, targetText);
+          });
+        }
+      }
+
+      tryAnimate();
+      window.addEventListener("scroll", tryAnimate);
+    }
+
+    function animateCounter(el: HTMLElement, targetText: string) {
+      const numericTarget = parseInt(targetText.replace(/\D/g, ""), 10) || 0;
+      const suffix = targetText.replace(/[0-9]/g, "");
+      const stepTime = COUNTER_CONFIG.DURATION / COUNTER_CONFIG.STEPS;
       let current = 0;
-      const increment = numericTarget / steps;
+      const increment = numericTarget / COUNTER_CONFIG.STEPS;
 
       const timer = setInterval(() => {
         current += increment;
-
         if (current >= numericTarget) {
           clearInterval(timer);
-          element.textContent = target;
+          el.textContent = targetText;
         } else {
-          element.textContent = Math.floor(current) + suffix;
+          el.textContent = Math.floor(current) + suffix;
         }
       }, stepTime);
     }
@@ -340,126 +384,79 @@ import Video from "../components/video.astro";
       );
     }
 
-    const counters = document.querySelectorAll(".counter .number");
-    let animated = false;
+    function initComparisonSlider() {
+      const container = document.querySelector(SELECTORS.VIDEO_COMPARISON);
+      const slider = document.querySelector(SELECTORS.COMPARISON_SLIDER);
+      const beforePane = document.querySelector(SELECTORS.BEFORE_CONTAINER);
 
-    function checkAndAnimate() {
-      if (
-        !animated &&
-        isElementInViewport(
-          document.querySelector(".experienceBody") as HTMLElement
-        )
-      ) {
-        animated = true;
+      if (!container || !slider || !beforePane) return;
 
-        counters.forEach((counter) => {
-          const targetValue = counter.textContent;
-          counter.textContent = "0";
-          animateCounter(counter as HTMLElement, targetValue!);
-        });
-      }
-    }
+      updateComparisonPosition();
+      checkVideosVisibility();
 
-    checkAndAnimate();
-    window.addEventListener("scroll", checkAndAnimate);
-  });
-</script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const slider = document.querySelector(".comparison-slider");
-    const beforeContainer = document.querySelector(".before-container");
-    const beforeVideo = document.querySelector(".before-video");
-    const afterVideo = document.querySelector(".after-video");
-    const videoComparison = document.querySelector(".video-comparison");
-
-    // Autoplay videos when they're visible in viewport
-    const videos = document.querySelectorAll(".video-comparison video");
-
-    function checkVideosInViewport() {
-      const rect = videoComparison?.getBoundingClientRect() || new DOMRect();
-      const isInViewport =
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <=
-          (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <=
-          (window.innerWidth || document.documentElement.clientWidth);
-
-      if (isInViewport) {
-        videos.forEach((video) => {
-          (video as HTMLVideoElement).play();
-        });
-      } else {
-        videos.forEach((video) => {
-          (video as HTMLVideoElement).pause();
-        });
-      }
-    }
-
-    // Initial position at 50%
-    let sliderPosition = 50;
-    updateSliderPosition();
-
-    function updateSliderPosition() {
-      if (slider) {
-        (slider as HTMLElement).style.left = `${sliderPosition}%`;
-      }
-      if (beforeContainer) {
-        (beforeContainer as HTMLElement).style.clipPath =
-          `inset(0 ${100 - sliderPosition}% 0 0)`;
-        // Menggunakan clipPath daripada width untuk menghindari perubahan ukuran
-      }
-    }
-
-    // Handle drag events
-    let isDragging = false;
-
-    if (slider) {
       slider.addEventListener("mousedown", startDrag);
       slider.addEventListener("touchstart", startDrag, { passive: true });
+      document.addEventListener("mousemove", drag);
+      document.addEventListener("touchmove", drag, { passive: false });
+      document.addEventListener("mouseup", endDrag);
+      document.addEventListener("touchend", endDrag);
+    }
+
+    function updateComparisonPosition() {
+      const slider = document.querySelector(SELECTORS.COMPARISON_SLIDER);
+      const beforePane = document.querySelector(
+        SELECTORS.BEFORE_CONTAINER
+      ) as HTMLElement;
+      if (slider) (slider as HTMLElement).style.left = `${sliderPosition}%`;
+      if (beforePane)
+        beforePane.style.clipPath = `inset(0 ${100 - sliderPosition}% 0 0)`;
     }
 
     function startDrag() {
       isDragging = true;
     }
 
-    document.addEventListener("mousemove", drag);
-    document.addEventListener("touchmove", drag, { passive: false });
-
-    function drag(e: MouseEvent | TouchEvent) {
+    function drag(event: MouseEvent | TouchEvent) {
       if (!isDragging) return;
+      event.preventDefault();
 
-      e.preventDefault();
+      const container = document.querySelector(SELECTORS.VIDEO_COMPARISON);
+      if (!container) return;
 
-      const containerRect =
-        videoComparison?.getBoundingClientRect() || new DOMRect();
-      let clientX;
+      const rect = container.getBoundingClientRect();
+      const clientX =
+        "touches" in event
+          ? (event as TouchEvent).touches[0].clientX
+          : (event as MouseEvent).clientX;
 
-      if (e.type === "touchmove") {
-        clientX = (e as TouchEvent).touches[0].clientX;
-      } else {
-        clientX = (e as MouseEvent).clientX;
-      }
-
-      const newPosition =
-        ((clientX - containerRect.left) / containerRect.width) * 100;
-      sliderPosition = Math.min(Math.max(newPosition, 0), 100);
-      updateSliderPosition();
+      let pos = ((clientX - rect.left) / rect.width) * 100;
+      sliderPosition = Math.max(0, Math.min(100, pos));
+      updateComparisonPosition();
     }
-
-    document.addEventListener("mouseup", endDrag);
-    document.addEventListener("touchend", endDrag);
 
     function endDrag() {
       isDragging = false;
     }
 
-    // Check if videos are in viewport on scroll
-    window.addEventListener("scroll", checkVideosInViewport);
-    window.addEventListener("resize", checkVideosInViewport);
+    function onScroll() {
+      checkVideosVisibility();
+    }
+    function onResize() {
+      updateComparisonPosition();
+      checkVideosVisibility();
+    }
 
-    // Initial check
-    checkVideosInViewport();
-  });
+    function checkVideosVisibility() {
+      const container = document.querySelector(SELECTORS.VIDEO_COMPARISON);
+      if (!container) return;
+
+      const videos = container.querySelectorAll("video");
+      const visible = isElementInViewport(container as HTMLElement);
+
+      videos.forEach((video) => {
+        if (visible) video.play();
+        else video.pause();
+      });
+    }
+  })();
 </script>

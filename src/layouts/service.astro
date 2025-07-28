@@ -143,177 +143,103 @@ import ServiceCard from "../components/serviceCard.astro";
 </div>
 
 <script>
-  // Slider functionality
+  import Splide from "@splidejs/splide";
+
+  const SELECTORS = {
+    SLIDER: "#serviceSlider",
+    PREV_BTN: "#prevServiceBtn",
+    NEXT_BTN: "#nextServiceBtn",
+    INDICATOR: ".indicator",
+    SLIDE: ".serviceSlide",
+    SPLIDE: "#serviceSplide",
+  };
+  const CLASSES = { ACTIVE: "active" };
+  const AUTO_INTERVAL_MS = 10_000;
+
   document.addEventListener("DOMContentLoaded", () => {
-    const slider = document.getElementById("serviceSlider");
-    const prevBtn = document.getElementById("prevServiceBtn");
-    const nextBtn = document.getElementById("nextServiceBtn");
-    const indicators = document.querySelectorAll(".indicator");
+    initServiceSlider();
+    initSplide();
+  });
+
+  function initServiceSlider() {
+    const slider = document.querySelector(SELECTORS.SLIDER);
+    const prevBtn = document.querySelector(SELECTORS.PREV_BTN);
+    const nextBtn = document.querySelector(SELECTORS.NEXT_BTN);
+    const indicators = Array.from(
+      document.querySelectorAll(SELECTORS.INDICATOR)
+    );
+    const slides = Array.from(document.querySelectorAll(SELECTORS.SLIDE));
+
+    if (!slider || !prevBtn || !nextBtn || indicators.length === 0) return;
 
     let currentIndex = 0;
-    const totalSlides = indicators.length;
+    let autoSlideTimer: ReturnType<typeof setInterval> | null = null;
 
-    // Function to update the active indicator
+    indicators.forEach((dot, i) => {
+      (dot as HTMLElement).setAttribute("data-index", i.toString());
+    });
+
+    function goToSlide(index: number) {
+      currentIndex = (index + indicators.length) % indicators.length;
+      if (slider instanceof HTMLElement) {
+        slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+      }
+      updateIndicators();
+    }
+
     function updateIndicators() {
-      indicators.forEach((indicator, index) => {
-        if (index === currentIndex) {
-          indicator.classList.add("active");
-        } else {
-          indicator.classList.remove("active");
-        }
-      });
+      indicators.forEach((dot, i) =>
+        dot.classList.toggle(CLASSES.ACTIVE, i === currentIndex)
+      );
     }
-
-    // Function to update the slider position
-    function updateSliderPosition() {
-      if (slider) {
-        // Adjust transition for different screen sizes
-        if (window.innerWidth <= 768) {
-          // Possibly different transition for mobile
-          slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-        } else {
-          slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-        }
-        updateIndicators();
-      }
-    }
-
-    // Initialize the first indicator as active
-    updateIndicators();
-
-    // Event listeners for buttons
-    prevBtn?.addEventListener("click", () => {
-      if (currentIndex > 0) {
-        currentIndex--;
-      } else {
-        currentIndex = totalSlides - 1; // Loop back to the last slide
-      }
-      updateSliderPosition();
-    });
-
-    nextBtn?.addEventListener("click", () => {
-      if (currentIndex < totalSlides - 1) {
-        currentIndex++;
-      } else {
-        currentIndex = 0; // Loop back to the first slide
-      }
-      updateSliderPosition();
-    });
-
-    // Add click events to indicators
-    indicators.forEach((indicator, index) => {
-      indicator.addEventListener("click", () => {
-        currentIndex = index;
-        updateSliderPosition();
-      });
-    });
-
-    // Auto slide functionality
-    let autoSlideInterval: ReturnType<typeof setInterval>;
 
     function startAutoSlide() {
-      autoSlideInterval = setInterval(() => {
-        if (currentIndex < totalSlides - 1) {
-          currentIndex++;
-        } else {
-          currentIndex = 0;
-        }
-        updateSliderPosition();
-      }, 10000); // Change slide every 10 seconds
+      stopAutoSlide();
+      autoSlideTimer = setInterval(
+        () => goToSlide(currentIndex + 1),
+        AUTO_INTERVAL_MS
+      );
     }
 
     function stopAutoSlide() {
-      clearInterval(autoSlideInterval);
+      if (autoSlideTimer) clearInterval(autoSlideTimer);
     }
 
-    // Start auto sliding
+    function adjustSlideWidths() {
+      slides.forEach((slide) => {
+        (slide as HTMLElement).style.minWidth = "100%";
+      });
+    }
+
+    prevBtn.addEventListener("click", () => goToSlide(currentIndex - 1));
+    nextBtn.addEventListener("click", () => goToSlide(currentIndex + 1));
+
+    indicators.forEach((dot) =>
+      dot.addEventListener("click", () =>
+        goToSlide(Number((dot as HTMLElement).getAttribute("data-index")))
+      )
+    );
+
+    slider.addEventListener("mouseenter", stopAutoSlide);
+    slider.addEventListener("mouseleave", startAutoSlide);
+
+    window.addEventListener("resize", () => {
+      adjustSlideWidths();
+      goToSlide(currentIndex);
+    });
+
+    adjustSlideWidths();
+    goToSlide(0);
     startAutoSlide();
-
-    // Pause auto sliding when hovering over the slider
-    slider?.addEventListener("mouseenter", stopAutoSlide);
-    slider?.addEventListener("mouseleave", startAutoSlide);
-  });
-
-  // Function to adjust slider based on screen size
-  function adjustForScreenSize() {
-    const slider = document.getElementById("serviceSlider");
-    const slides = document.querySelectorAll(".serviceSlide");
-
-    if (window.innerWidth <= 768) {
-      // Mobile adjustments
-      slides.forEach((slide) => {
-        (slide as HTMLElement).style.minWidth = "100%";
-      });
-
-      // Reset currentIndex to 0 and update slider position
-      if (slider) {
-        const currentActiveIndex =
-          document
-            .querySelector(".indicator.active")
-            ?.getAttribute("data-index") || 0;
-        slider.style.transform = `translateX(-${Number(currentActiveIndex) * 100}%)`;
-      }
-    } else if (window.innerWidth <= 1024) {
-      // Tablet adjustments
-      slides.forEach((slide) => {
-        (slide as HTMLElement).style.minWidth = "100%";
-      });
-
-      // Reset currentIndex to 0 and update slider position
-      if (slider) {
-        const currentActiveIndex =
-          document
-            .querySelector(".indicator.active")
-            ?.getAttribute("data-index") || 0;
-        slider.style.transform = `translateX(-${Number(currentActiveIndex) * 100}%)`;
-      }
-    } else {
-      // Desktop adjustments
-      slides.forEach((slide) => {
-        (slide as HTMLElement).style.minWidth = "100%";
-      });
-
-      // Reset currentIndex to 0 and update slider position
-      if (slider) {
-        const currentActiveIndex =
-          document
-            .querySelector(".indicator.active")
-            ?.getAttribute("data-index") || 0;
-        slider.style.transform = `translateX(-${Number(currentActiveIndex) * 100}%)`;
-      }
-    }
   }
 
-  // Call on load and resize
-  adjustForScreenSize();
-  window.addEventListener("resize", adjustForScreenSize);
-
-  // Add click events to indicators
-  document.querySelectorAll(".indicator").forEach((indicator, index) => {
-    indicator.addEventListener("click", () => {
-      const slider = document.getElementById("serviceSlider");
-      if (slider) {
-        slider.style.transform = `translateX(-${index * 100}%)`;
-      }
-      // Remove updateSliderPosition call since it's not accessible in this scope
-      document.querySelectorAll(".indicator").forEach((ind, i) => {
-        if (i === index) {
-          ind.classList.add("active");
-        } else {
-          ind.classList.remove("active");
-        }
-      });
-    });
-  });
-</script>
-
-<script>
-  import Splide from "@splidejs/splide";
-  document.addEventListener("DOMContentLoaded", function () {
-    var splide = new Splide("#serviceSplide", {
+  function initSplide() {
+    const splideEl = document.querySelector(SELECTORS.SPLIDE);
+    if (!splideEl) return;
+    new Splide(SELECTORS.SPLIDE, {
       autoplay: true,
       type: "loop",
-    });
-    splide.mount();
-  });
+      gap: 16,
+    }).mount();
+  }
 </script>
