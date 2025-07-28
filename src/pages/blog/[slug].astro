@@ -20,7 +20,6 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 const post = await getPost(slug);
 
-// Format tanggal dari ISO ke format yang lebih mudah dibaca
 function formatDate(isoDate: string) {
   const date = new Date(isoDate);
   const day = date.getDate();
@@ -45,7 +44,6 @@ function formatDate(isoDate: string) {
 
 const formattedDate = post.publishedAt ? formatDate(post.publishedAt) : "";
 
-// Prepare SEO metadata
 const title = `${post.title} | Ekido Blog`;
 const description = post.subtitle || post.brief;
 const keywords = post.tags
@@ -59,7 +57,6 @@ const canonicalUrl = new URL(
   Astro.site || "https://ekidocreative.com"
 ).toString();
 
-// Buat data JSON-LD untuk blog post
 const jsonLdData = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",

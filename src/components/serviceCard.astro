@@ -2,61 +2,48 @@
 import "../styles/serviceCard.css";
 import Button from "../components/button.astro";
 
-// Define the interface for the component props
 interface Props {
   imageSrc: string;
   title: string;
   description1: string;
   description2: string;
-  buttonHref?: string; // Optional, will use default if not provided
-  buttonColor?: string; // Optional, will use default if not provided
-  buttonText?: string; // Optional, will use default if not provided
+  buttonHref?: string;
+  buttonColor?: string;
+  buttonText?: string;
 }
 
-// Destructure props with default values
 const {
   imageSrc,
   title,
   description1,
   description2,
-  buttonHref = "http://wa.link/2d3uae", // Default button link
-  buttonColor = "yellowAlt", // Default button color
-  buttonText = "Pesan Sekarang", // Default button text
+  buttonHref = "http://wa.link/2d3uae",
+  buttonColor = "yellowAlt",
+  buttonText = "Pesan Sekarang",
 } = Astro.props;
 
-// Check if description2 contains emojis for list formatting
-// This regex will match any emoji character at the beginning of a segment
-const emojiRegex = /[\p{Emoji}]/u;
-const hasEmojiList = emojiRegex.test(description2);
+/**
+ * Parse a description into [{ emoji, text }] entries.
+ * @param {string} description2
+ * @returns {Array<{emoji: string, text: string}>}
+ */
+function parseEmojiList(description2: string) {
+  const EMOJI_REGEX = /([\p{Emoji}]+)/gu;
+  const matches = Array.from(description2.matchAll(EMOJI_REGEX));
 
-// Parse the description into list items if it contains emojis
-let listItems = [];
-if (hasEmojiList) {
-  // First, find all emojis in the text
-  const emojiMatches = [...description2.matchAll(/([\p{Emoji}]+)/gu)];
+  if (matches.length === 0) return [];
 
-  // If we found emojis, split the text by those emojis
-  if (emojiMatches.length > 0) {
-    // Get the positions of all emojis
-    const splitPositions = emojiMatches.map((match) => match.index);
+  return matches
+    .map((match, i) => {
+      const emoji = match[1];
+      const start = (match.index ?? 0) + emoji.length;
+      const nextMatch = matches[i + 1];
+      const end = nextMatch ? nextMatch.index : description2.length;
+      const text = description2.slice(start, end).trim();
 
-    // Split the text into segments based on emoji positions
-    for (let i = 0; i < splitPositions.length; i++) {
-      const start = splitPositions[i];
-      const end =
-        i < splitPositions.length - 1
-          ? splitPositions[i + 1]
-          : description2.length;
-
-      // Get the emoji and the text that follows it
-      const emoji = emojiMatches[i][0];
-      const text = description2.substring(start + emoji.length, end).trim();
-
-      if (text) {
-        listItems.push({ emoji, text });
-      }
-    }
-  }
+      return text ? { emoji, text } : null;
+    })
+    .filter((item) => item !== null);
 }
 ---
 
@@ -69,9 +56,9 @@ if (hasEmojiList) {
         {description1}
       </p>
       {
-        hasEmojiList && listItems.length > 0 ? (
+        parseEmojiList(description2).length > 0 ? (
           <ul class="emoji-list">
-            {listItems.map((item) => (
+            {parseEmojiList(description2).map((item) => (
               <li>
                 <span class="emoji">{item.emoji}</span> {item.text}
               </li>
