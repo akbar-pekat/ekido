@@ -21,14 +21,31 @@
   object-fit: cover;
 }
 
+.video-wrapper {
+  background: #5150e3;
+  width: 100%;
+  aspect-ratio: 26 / 23;
+  border-radius: 12px;
+  overflow: hidden;
+  background: transparent;
+}
+
 .serviceVideo {
   background: lightgray;
   border-radius: 12px;
   width: 100%;
-  /* height: 500px; */
-  aspect-ratio: 1;
+  /* max-width: 450px; */
+  /* aspect-ratio: 1; */
   position: relative;
   object-fit: cover;
+}
+
+.lottie-wrapper {
+  width: 100%;
+  aspect-ratio: 26 / 23;
+  border-radius: 12px;
+  overflow: hidden;
+  background: transparent;
 }
 
 .lottieAnim {
@@ -38,6 +55,7 @@
   background: transparent;
   border-radius: 12px;
   aspect-ratio: 26 / 23;
+  --lottie-border-radius: 12px;
 }
 
 .lottieAnim canvas {

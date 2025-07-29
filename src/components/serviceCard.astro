@@ -58,18 +58,29 @@ function parseEmojiList(description2: string) {
 <div class="serviceCard">
   {
     useVideo ? (
-      <video class="serviceVideo" src={videoSrc} autoplay loop muted playsinline></video>
+      <div class="video-wrapper">
+        <video
+          class="serviceVideo"
+          src={videoSrc}
+          autoplay
+          loop
+          muted
+          playsinline
+        />
+      </div>
     ) : !useLottie ? (
       <img class="serviceImage" src={imageSrc} alt={title} />
     ) : (
-      <dotlottie-wc
-        src={lottieSrc}
-        class="lottieAnim"
-        speed="1"
-        autoplay
-        loop
-        mode="bounce"
-      />
+      <div class="lottie-wrapper">
+        <dotlottie-wc
+          src={lottieSrc}
+          class="lottieAnim"
+          speed="1"
+          autoplay
+          loop
+          mode="bounce"
+        />
+      </div>
     )
   }
   <div class="serviceText">
@@ -92,7 +103,11 @@ function parseEmojiList(description2: string) {
         )
       }
     </div>
-    <Button href={buttonHref} color={buttonColor} showWhatsappIcon shakeOnHover={true}
+    <Button
+      href={buttonHref}
+      color={buttonColor}
+      showWhatsappIcon
+      shakeOnHover={true}
       >{buttonText}
     </Button>
   </div>
