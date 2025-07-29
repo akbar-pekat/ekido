@@ -2,7 +2,7 @@
   background: #f6f5f8;
   border-radius: 20px;
   padding: 24px 20px;
-  margin: 0 40px;
+  margin: 0 60px;
   display: flex;
   flex-direction: row;
   gap: 24px;
@@ -10,7 +10,6 @@
   justify-content: flex-start;
   position: relative;
   overflow: hidden;
-  height: 100%;
 }
 
 .serviceImage {
@@ -35,8 +34,6 @@
   background: lightgray;
   border-radius: 12px;
   width: 100%;
-  /* max-width: 450px; */
-  /* aspect-ratio: 1; */
   position: relative;
   object-fit: cover;
 }

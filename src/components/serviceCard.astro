@@ -72,14 +72,7 @@ function parseEmojiList(description2: string) {
       <img class="serviceImage" src={imageSrc} alt={title} />
     ) : (
       <div class="lottie-wrapper">
-        <dotlottie-wc
-          src={lottieSrc}
-          class="lottieAnim"
-          speed="1"
-          autoplay
-          loop
-          mode="bounce"
-        />
+        <lottie-player src={lottieSrc} class="lottieAnim" />
       </div>
     )
   }
@@ -112,3 +105,20 @@ function parseEmojiList(description2: string) {
     </Button>
   </div>
 </div>
+
+<script>
+  const playerContainers = document.querySelectorAll(".serviceCard");
+  playerContainers.forEach((container) => {
+    container.addEventListener("mouseover", () => {
+      const player = container.querySelector("lottie-player");
+      (player as any)?.setDirection(1);
+      (player as any)?.play();
+    });
+
+    container.addEventListener("mouseleave", () => {
+      const player = container.querySelector("lottie-player");
+      (player as any)?.setDirection(-1);
+      (player as any)?.play();
+    });
+  });
+</script>
