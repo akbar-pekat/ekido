@@ -14,7 +14,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 90px 120px 200px;
+  padding: 90px 0 200px;
   gap: 32px;
   position: relative;
   overflow: hidden;
@@ -34,9 +34,10 @@
   width: 100%;
   overflow: hidden;
   position: relative;
+  touch-action: pan-x;
 }
 
-.testimoni-slider-container::before {
+/* .testimoni-slider-container::before {
   content: "";
   position: absolute;
   top: 0;
@@ -46,9 +47,9 @@
   background: linear-gradient(to right, #d9ff63 0%, rgba(217, 255, 99, 0) 100%);
   z-index: 2;
   pointer-events: none;
-}
+} */
 
-.testimoni-slider-container::after {
+/* .testimoni-slider-container::after {
   content: "";
   position: absolute;
   top: 0;
@@ -58,7 +59,7 @@
   background: linear-gradient(to left, #d9ff63 0%, rgba(217, 255, 99, 0) 100%);
   z-index: 2;
   pointer-events: none;
-}
+} */
 
 .testimoniCardSection {
   display: flex;
@@ -67,6 +68,12 @@
   align-items: center;
   animation: scrollTestimoni 30s linear infinite;
   width: max-content;
+  cursor: grab;
+  will-change: transform;
+}
+
+.testimoniCardSection:active {
+  cursor: grabbing;
 }
 
 @keyframes scrollTestimoni {
@@ -78,7 +85,15 @@
   }
 }
 
-.testimoni-slider-container:hover .testimoniCardSection {
+/* Hanya pause pada hover di desktop */
+@media (hover: hover) and (min-width: 768px) {
+  .testimoni-slider-container:hover .testimoniCardSection {
+    animation-play-state: paused;
+  }
+}
+
+/* Kelas untuk animasi yang sedang di-pause */
+.testimoniCardSection.paused {
   animation-play-state: paused;
 }
 
@@ -104,17 +119,17 @@
 
 @media screen and (max-width: 1024px) {
   .testimoniSection .container {
-    padding: 70px 80px 60px;
+    padding: 70px 0 60px;
   }
 
   .testimoniSection .headerSection h3 {
     font-size: 36px;
   }
 
-  .testimoni-slider-container::before,
+  /* .testimoni-slider-container::before,
   .testimoni-slider-container::after {
     width: 80px;
-  }
+  } */
 
   .testimoniCardSection {
     gap: 24px;
@@ -127,17 +142,17 @@
 
 @media screen and (max-width: 768px) {
   .testimoniSection .container {
-    padding: 60px 40px 50px;
+    padding: 60px 0 50px;
   }
 
   .testimoniSection .headerSection h3 {
     font-size: 32px;
   }
 
-  .testimoni-slider-container::before,
+  /* .testimoni-slider-container::before,
   .testimoni-slider-container::after {
     width: 60px;
-  }
+  } */
 
   .testimoniCardSection {
     gap: 20px;
@@ -146,17 +161,17 @@
 
 @media screen and (max-width: 390px) {
   .testimoniSection .container {
-    padding: 40px 20px 30px;
+    padding: 40px 0 30px;
   }
 
   .testimoniSection .headerSection h3 {
     font-size: 28px;
   }
 
-  .testimoni-slider-container::before,
+  /* .testimoni-slider-container::before,
   .testimoni-slider-container::after {
     width: 20px;
-  }
+  } */
 
   .testimoniCardSection {
     gap: 16px;

@@ -5,7 +5,7 @@ export const getClient = () => {
   return new GraphQLClient("https://gql.hashnode.com");
 };
 
-const myHashnodeURL = "apekido.hashnode.dev";
+const myHashnodeURL = "ekido.hashnode.dev";
 
 export const getAllPosts = async () => {
   const client = getClient();

@@ -118,7 +118,7 @@ import Video from "../components/video.astro";
               platform="instagram"
             />
             <SelebCard
-              avatarSrc="https://res.cloudinary.com/apclient/image/upload/f_auto,q_auto/v1753514465/adriel_nwphlj_itihh8.webp"
+              avatarSrc="https://res.cloudinary.com/apclient/image/upload/f_auto,q_auto/v1753767325/AIdro_lcnISzRKS7OJlykc_Q67U2qz-VsXUSoKgTxo0UsjnyVBk_s900-c-k-c0x00ffffff-no-rj_be7zcg.jpg"
               username="@adrielreith"
               followers="356K"
               platform="instagram"
@@ -130,7 +130,7 @@ import Video from "../components/video.astro";
               platform="instagram"
             />
             <SelebCard
-              avatarSrc="https://res.cloudinary.com/apclient/image/upload/f_auto,q_auto/v1753733331/487832132_1195512028894751_679908501975362895_n.jpg_mzdf9p.jpg"
+              avatarSrc="https://res.cloudinary.com/apclient/image/upload/f_auto,q_auto/369350884_1375699666632905_4340747918372861878_n.jpg_ghjzjq.jpg"
               username="@muhammadddgibran"
               followers="45,7K"
               platform="instagram"
@@ -204,7 +204,7 @@ import Video from "../components/video.astro";
               platform="instagram"
             />
             <SelebCard
-              avatarSrc="https://res.cloudinary.com/apclient/image/upload/f_auto,q_auto/v1753514465/adriel_nwphlj_itihh8.webp"
+              avatarSrc="https://res.cloudinary.com/apclient/image/upload/f_auto,q_auto/v1753767325/AIdro_lcnISzRKS7OJlykc_Q67U2qz-VsXUSoKgTxo0UsjnyVBk_s900-c-k-c0x00ffffff-no-rj_be7zcg.jpg"
               username="@adrielreith"
               followers="356K"
               platform="instagram"
@@ -216,7 +216,7 @@ import Video from "../components/video.astro";
               platform="instagram"
             />
             <SelebCard
-              avatarSrc="https://res.cloudinary.com/apclient/image/upload/f_auto,q_auto/v1753733331/487832132_1195512028894751_679908501975362895_n.jpg_mzdf9p.jpg"
+              avatarSrc="https://res.cloudinary.com/apclient/image/upload/f_auto,q_auto/369350884_1375699666632905_4340747918372861878_n.jpg_ghjzjq.jpg"
               username="@muhammadddgibran"
               followers="45,7K"
               platform="instagram"
@@ -259,7 +259,7 @@ import Video from "../components/video.astro";
               <div class="text">Total Penonton</div>
             </div>
             <div class="counter">
-              <div class="number">50</div>
+              <div class="number">50+</div>
               <div class="text">Brand</div>
             </div>
           </div>
@@ -456,6 +456,39 @@ import Video from "../components/video.astro";
       videos.forEach((video) => {
         if (visible) video.play();
         else video.pause();
+      });
+    }
+  })();
+</script>
+
+<script>
+  (function () {
+    const trustList = document.querySelector(".trustList");
+    let resumeTimer: number;
+
+    function scheduleAutoResume() {
+      clearTimeout(resumeTimer);
+      resumeTimer = window.setTimeout(() => {
+        if (trustList) {
+          (trustList as HTMLElement).style.animationPlayState = "running";
+        }
+      }, 2000);
+    }
+
+    const isMobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
+
+    if (trustList) {
+      trustList.addEventListener("touchstart", () => {
+        if (trustList) {
+          (trustList as HTMLElement).style.animationPlayState = "paused";
+        }
+      });
+
+      trustList.addEventListener("touchend", () => {
+        scheduleAutoResume();
       });
     }
   })();
