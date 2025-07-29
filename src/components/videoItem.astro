@@ -38,3 +38,22 @@ import Video from "./video.astro";
     z-index: 3;
   }
 </style>
+
+<script>
+  function checkTextOverflow() {
+    const descriptions = document.querySelectorAll(".description-regular");
+
+    descriptions.forEach((desc) => {
+      if (desc.scrollWidth > desc.clientWidth) {
+        desc.classList.add("overflow");
+      } else {
+        desc.classList.remove("overflow");
+      }
+    });
+  }
+
+  // Jalankan saat halaman dimuat
+  document.addEventListener("DOMContentLoaded", checkTextOverflow);
+  // Jalankan saat ukuran window berubah
+  window.addEventListener("resize", checkTextOverflow);
+</script>

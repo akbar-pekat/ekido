@@ -110,10 +110,10 @@
   flex-shrink: 0;
   width: 100px;
   position: relative;
+  transition: all 0.5s ease;
 }
 
 .featureImg {
-  /* background: lightgrey; */
   border-radius: 50px;
   align-self: stretch;
   flex-shrink: 0;
@@ -121,6 +121,11 @@
   position: relative;
   object-fit: cover;
   -webkit-user-drag: none;
+  transition: all 0.5s ease;
+}
+
+.featureItem:hover > .featureImg {
+  transform: scale(1.1);
 }
 
 .featureLabel {
