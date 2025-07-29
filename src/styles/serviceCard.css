@@ -10,6 +10,7 @@
   justify-content: flex-start;
   position: relative;
   overflow: hidden;
+  height: 100%;
 }
 
 .serviceImage {
@@ -203,6 +204,8 @@
     padding: 16px;
     align-items: flex-start;
     margin: 0;
+    height: 100%;
+    display: flex;
   }
 
   .serviceImage {
@@ -211,6 +214,10 @@
 
   .serviceText {
     gap: 12px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: flex-start;
   }
 
   .serviceText h3 {
