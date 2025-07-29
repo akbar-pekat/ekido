@@ -12,6 +12,7 @@ nav {
   left: 50%;
   transform: translateX(-50%);
   z-index: 5;
+  transition: all 0.5s ease;
 }
 
 nav .navContainer {
@@ -202,4 +203,22 @@ nav .navContainer {
   nav {
     max-width: 300px;
   }
+}
+
+/* Tambahkan setelah style .navMenu .menuItem yang sudah ada */
+.navMenu .menuItem.active {
+  color: #5150e3; /* Warna biru sesuai dengan branding */
+  position: relative;
+  font-weight: 600;
+}
+
+.navMenu .menuItem.active::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #5150e3; /* Warna biru sesuai dengan branding */
+  border-radius: 1px;
 }
