@@ -21,6 +21,16 @@
   object-fit: cover;
 }
 
+.serviceVideo {
+  background: lightgray;
+  border-radius: 12px;
+  width: 100%;
+  /* height: 500px; */
+  aspect-ratio: 1;
+  position: relative;
+  object-fit: cover;
+}
+
 .lottieAnim {
   display: block;
   width: 100%;

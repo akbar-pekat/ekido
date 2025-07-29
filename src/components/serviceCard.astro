@@ -12,6 +12,8 @@ interface Props {
   buttonText?: string;
   useLottie?: boolean;
   lottieSrc?: string;
+  useVideo?: boolean;
+  videoSrc?: string;
 }
 
 const {
@@ -24,6 +26,8 @@ const {
   buttonText = "Pesan Sekarang",
   useLottie = false,
   lottieSrc,
+  useVideo = false,
+  videoSrc,
 } = Astro.props;
 
 /**
@@ -53,7 +57,9 @@ function parseEmojiList(description2: string) {
 
 <div class="serviceCard">
   {
-    !useLottie ? (
+    useVideo ? (
+      <video class="serviceVideo" src={videoSrc} autoplay loop muted playsinline></video>
+    ) : !useLottie ? (
       <img class="serviceImage" src={imageSrc} alt={title} />
     ) : (
       <dotlottie-wc
