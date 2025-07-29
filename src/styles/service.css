@@ -163,6 +163,10 @@
   user-select: none;
 }
 
+#serviceSplide .splide__slide > * {
+  height: calc(100% - 50px);
+}
+
 /* Add responsive adjustments */
 @media (max-width: 1024px) {
   .serviceSection .container {
@@ -190,6 +194,7 @@
   }
 }
 
+/* Tambahkan di bagian media query untuk mobile */
 @media (max-width: 768px) {
   .serviceSection .container {
     padding: 60px 20px;
@@ -198,6 +203,16 @@
 
   .serviceSection .headerSection h2 {
     font-size: 32px;
+  }
+
+  /* Tambahkan styling untuk slide */
+  #serviceSplide .splide__slide {
+    height: auto;
+    display: flex;
+  }
+
+  #serviceSplide .splide__slide > * {
+    height: calc(100% - 32px);
   }
 
   .arrowleftAlt,
