@@ -164,6 +164,7 @@
   .heroSection .container {
     padding: 80px 0 0 80px;
     min-height: 80vh;
+    height: fit-content;
   }
 
   .heroSection .container .textContainer {

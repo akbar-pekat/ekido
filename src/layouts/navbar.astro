@@ -147,6 +147,23 @@ import Button from "../components/button.astro";
 
     const observer = new IntersectionObserver(
       (entries) => {
+        let tentangekidoVisible = false;
+
+        entries.forEach((entry) => {
+          if (
+            entry.isIntersecting &&
+            (entry.target.id === "tentangekido" ||
+             entry.target.closest("#tentangekido"))
+          ) {
+            tentangekidoVisible = true;
+          }
+        });
+
+        if (tentangekidoVisible) {
+          setActiveMenuItem("tentangekido");
+          return;
+        }
+
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             if (menuSectionIds.has(entry.target.id)) {
@@ -172,11 +189,15 @@ import Button from "../components/button.astro";
                 );
               });
 
-            if (
-              visibleSections.length > 0 &&
-              menuSectionIds.has(visibleSections[0].id)
-            ) {
-              setActiveMenuItem(visibleSections[0].id);
+            if (visibleSections.length > 0) {
+              if (
+                visibleSections[0].id === "tentangekido" ||
+                visibleSections[0].closest("#tentangekido")
+              ) {
+                setActiveMenuItem("tentangekido");
+              } else if (menuSectionIds.has(visibleSections[0].id)) {
+                setActiveMenuItem(visibleSections[0].id);
+              }
             }
           } else if (
             !entry.isIntersecting &&
@@ -193,11 +214,15 @@ import Button from "../components/button.astro";
                 );
               });
 
-            if (
-              visibleSections.length > 0 &&
-              menuSectionIds.has(visibleSections[0].id)
-            ) {
-              setActiveMenuItem(visibleSections[0].id);
+            if (visibleSections.length > 0) {
+              if (
+                visibleSections[0].id === "tentangekido" ||
+                visibleSections[0].closest("#tentangekido") // Periksa apakah elemen berada dalam container dengan ID tentangekido
+              ) {
+                setActiveMenuItem("tentangekido");
+              } else if (menuSectionIds.has(visibleSections[0].id)) {
+                setActiveMenuItem(visibleSections[0].id);
+              }
             }
           }
         });
