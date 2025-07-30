@@ -23,6 +23,7 @@
   position: relative;
   max-width: 1600px;
   margin: 0 auto;
+  height: 100%;
 }
 
 .heroSection .container .textContainer {
@@ -64,7 +65,8 @@
 
 /* Tambahkan keyframes untuk animasi naik turun */
 @keyframes bounceDown {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -208,11 +210,18 @@
    (max-width: 768px)
    ========================= */
 @media (max-width: 768px) {
+  .heroSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
   .heroSection .container {
     flex-direction: column;
     padding: 80px 20px 16px;
     min-height: auto;
     gap: 20px;
+    height: fit-content;
   }
 
   .heroSection .container .textContainer {
