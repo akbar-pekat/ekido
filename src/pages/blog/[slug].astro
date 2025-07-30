@@ -81,6 +81,8 @@ const jsonLdData = {
     "@id": new URL(Astro.url.pathname, Astro.site).href,
   },
 };
+
+export const prerender = false;
 ---
 
 <Base
