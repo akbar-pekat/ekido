@@ -1,0 +1,10 @@
+{
+  "github": {
+    "silent": true
+  },
+  "cleanUrls": true,
+  "revalidate": {
+    "paths": ["/", "/blog/*"],
+    "duration": 100
+  }
+}
