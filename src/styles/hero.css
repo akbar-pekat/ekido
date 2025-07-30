@@ -70,7 +70,7 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(12px);
+    transform: translateY(-16px);
   }
 }
 
@@ -215,6 +215,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
   }
   
   .heroSection .container {
