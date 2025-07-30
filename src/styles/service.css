@@ -113,7 +113,7 @@
   flex-direction: row;
   align-items: center;
   gap: 32px;
-  animation: marquee 60s linear infinite;
+  animation: marquee 30s linear infinite;
   white-space: nowrap;
   width: max-content;
   max-width: none;
@@ -126,13 +126,12 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-50.5%);
   }
 }
 
 .serviceSection .footerSection .brandsSlide img {
-  width: 150px;
-  height: auto;
+  height: 32px;
 }
 
 .serviceSection .asset2alt {

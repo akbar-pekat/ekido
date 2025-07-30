@@ -70,7 +70,7 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(12px);
+    transform: translateY(-16px);
   }
 }
 
@@ -164,6 +164,7 @@
   .heroSection .container {
     padding: 80px 0 0 80px;
     min-height: 80vh;
+    height: fit-content;
   }
 
   .heroSection .container .textContainer {
@@ -214,6 +215,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
   }
   
   .heroSection .container {
