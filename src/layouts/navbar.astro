@@ -100,39 +100,34 @@ import Button from "../components/button.astro";
     document.body.classList.remove(CLASSES.NO_SCROLL);
   }
 
-  // Fungsi untuk highlight menu aktif berdasarkan URL
   function highlightActiveSection() {
     const hash = window.location.hash;
     if (hash) {
-      const sectionId = hash.substring(1); // Hapus karakter # dari awal
+      const sectionId = hash.substring(1);
       setActiveMenuItem(sectionId);
     }
   }
 
-  // Fungsi untuk mengatur menu item aktif
   function setActiveMenuItem(sectionId: string) {
-    // Hapus kelas active dari semua menu item
     document.querySelectorAll(SELECTORS.MENU_ITEM).forEach((item) => {
       item.classList.remove(CLASSES.ACTIVE);
     });
 
-    // Tambahkan kelas active ke menu item yang sesuai dengan section
     const menuItem = document.querySelector(`a[href="/#${sectionId}"]`);
     if (menuItem) {
       menuItem.classList.add(CLASSES.ACTIVE);
     }
   }
 
-  // Fungsi untuk mengamati section yang terlihat di viewport
   function setupSectionObserver() {
     const sections: HTMLElement[] = [];
-    const menuSectionIds = new Set<string>(); // Menyimpan ID section yang ada di menu
-    
+    const menuSectionIds = new Set<string>();
+
     document.querySelectorAll(SELECTORS.MENU_ITEM).forEach((item) => {
       const href = item.getAttribute("href");
       if (href && href.startsWith("/#")) {
         const sectionId = href.substring(2);
-        menuSectionIds.add(sectionId); // Tambahkan ke Set
+        menuSectionIds.add(sectionId);
         const section = document.getElementById(sectionId);
         if (section) {
           sections.push(section);
@@ -140,49 +135,85 @@ import Button from "../components/button.astro";
       }
     });
 
-    // Tambahkan semua section lain yang tidak ada di menu navbar
-    // untuk menghilangkan underline saat berada di section tersebut
     const allSections = document.querySelectorAll("section[id]");
     allSections.forEach((section) => {
-      if (!menuSectionIds.has(section.id) && !sections.includes(section as HTMLElement)) {
+      if (
+        !menuSectionIds.has(section.id) &&
+        !sections.includes(section as HTMLElement)
+      ) {
         sections.push(section as HTMLElement);
       }
     });
 
-    // Buat Intersection Observer untuk mengamati section
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Jika section yang terlihat adalah section yang ada di menu navbar
             if (menuSectionIds.has(entry.target.id)) {
               setActiveMenuItem(entry.target.id);
             } else {
-              // Jika section yang terlihat bukan bagian dari menu navbar
-              // Hapus semua underline
               document.querySelectorAll(SELECTORS.MENU_ITEM).forEach((item) => {
                 item.classList.remove(CLASSES.ACTIVE);
               });
             }
+          } else if (
+            !entry.isIntersecting &&
+            entry.boundingClientRect.top <= 0
+          ) {
+            const visibleSections = sections
+              .filter((section) => {
+                const rect = section.getBoundingClientRect();
+                return rect.top <= window.innerHeight && rect.bottom >= 0;
+              })
+              .sort((a, b) => {
+                return (
+                  Math.abs(a.getBoundingClientRect().top) -
+                  Math.abs(b.getBoundingClientRect().top)
+                );
+              });
+
+            if (
+              visibleSections.length > 0 &&
+              menuSectionIds.has(visibleSections[0].id)
+            ) {
+              setActiveMenuItem(visibleSections[0].id);
+            }
+          } else if (
+            !entry.isIntersecting &&
+            entry.boundingClientRect.top > 0
+          ) {
+            const visibleSections = sections
+              .filter((section) => {
+                const rect = section.getBoundingClientRect();
+                return rect.top <= window.innerHeight && rect.bottom >= 0;
+              })
+              .sort((a, b) => {
+                return (
+                  a.getBoundingClientRect().top - b.getBoundingClientRect().top
+                );
+              });
+
+            if (
+              visibleSections.length > 0 &&
+              menuSectionIds.has(visibleSections[0].id)
+            ) {
+              setActiveMenuItem(visibleSections[0].id);
+            }
           }
         });
       },
-      { threshold: 0.5 }
-    ); // Threshold 0.5 berarti section harus terlihat setidaknya 50%
+      { threshold: 0.2 }
+    );
 
-    // Amati semua section
     sections.forEach((section) => {
       observer.observe(section);
     });
   }
 
-  // Fungsi untuk membersihkan URL setelah navigasi
   function setupCleanUrl() {
     document.querySelectorAll(SELECTORS.MENU_ITEM).forEach((item) => {
       item.addEventListener("click", (e) => {
-        // Biarkan browser melakukan scroll dulu ke section
         setTimeout(() => {
-          // Ganti URL tanpa reload halaman
           history.replaceState(null, document.title, window.location.pathname);
         }, 100);
       });
