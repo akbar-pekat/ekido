@@ -10,6 +10,9 @@
   background: #5150e3;
   height: 100vh;
   max-height: 1080px;
+}
+
+.heroSection .container {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -22,7 +25,7 @@
   margin: 0 auto;
 }
 
-.heroSection .textContainer {
+.heroSection .container .textContainer {
   margin-top: 24px;
   display: flex;
   flex-direction: column;
@@ -30,7 +33,7 @@
   padding-left: 120px;
 }
 
-.heroSection .textContainer .heading h1 {
+.heroSection .container .textContainer .heading h1 {
   color: #d9ff63;
   font-family: "Parkinsans", sans-serif;
   font-size: 64px;
@@ -38,19 +41,19 @@
   margin: 0;
 }
 
-.heroSection .textContainer .heading .textLogo {
+.heroSection .container .textContainer .heading .textLogo {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 8px;
 }
 
-.heroSection .textContainer .heading .textLogo img {
+.heroSection .container .textContainer .heading .textLogo img {
   height: calc(64px - 24px);
   vertical-align: middle;
 }
 
-.heroSection .textContainer p {
+.heroSection .container .textContainer p {
   color: #ffffff;
   font-family: "General Sans", sans-serif;
   font-size: 28px;
@@ -59,15 +62,27 @@
   max-width: 600px;
 }
 
-.heroSection .textContainer .downHero {
+/* Tambahkan keyframes untuk animasi naik turun */
+@keyframes bounceDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(12px);
+  }
+}
+
+.heroSection .container .textContainer .downHero {
   color: #ffffff;
   font-family: "General Sans", sans-serif;
   font-size: 24px;
   font-weight: 400;
   margin: 0;
+  animation: bounceDown 1s ease-in-out infinite;
+  cursor: pointer;
 }
 
-.heroSection .imageContainer {
+.heroSection .container .imageContainer {
   position: relative;
   display: flex;
   flex: 1;
@@ -76,7 +91,7 @@
   z-index: 1;
 }
 
-.heroSection .imageContainer img {
+.heroSection .container .imageContainer img {
   position: absolute;
   top: 0;
   right: -160px;
@@ -95,42 +110,42 @@
 }
 
 @media (min-width: 1025px) and (max-width: 1152px) {
-  .heroSection {
+  .heroSection .container {
     padding: 80px 0 0 80px;
     min-height: 80vh;
   }
 
-  .heroSection .textContainer {
+  .heroSection .container .textContainer {
     margin-top: 0;
     padding-left: 0;
   }
 
-  .heroSection .textContainer .heading h1 {
+  .heroSection .container .textContainer .heading h1 {
     font-size: 48px;
   }
 
-  .heroSection .textContainer .heading .textLogo {
+  .heroSection .container .textContainer .heading .textLogo {
     gap: 12px;
   }
 
-  .heroSection .textContainer .heading .textLogo img {
+  .heroSection .container .textContainer .heading .textLogo img {
     height: calc(48px - 12px);
   }
 
-  .heroSection .textContainer p {
+  .heroSection .container .textContainer p {
     font-size: 22px;
     max-width: 500px;
   }
 
-  .heroSection .textContainer .downHero {
+  .heroSection .container .textContainer .downHero {
     font-size: 20px;
   }
 
-  .heroSection .imageContainer {
+  .heroSection .container.imageContainer {
     min-height: 380px;
   }
 
-  .heroSection .imageContainer img {
+  .heroSection .container .imageContainer img {
     right: -130px;
   }
 
@@ -144,42 +159,42 @@
    (max-width: 1024px)
    ========================= */
 @media (max-width: 1024px) {
-  .heroSection {
+  .heroSection .container {
     padding: 80px 0 0 80px;
     min-height: 80vh;
   }
 
-  .heroSection .textContainer {
+  .heroSection .container .textContainer {
     margin-top: 0;
     padding-left: 0;
   }
 
-  .heroSection .textContainer .heading h1 {
+  .heroSection .container .textContainer .heading h1 {
     font-size: 48px;
   }
 
-  .heroSection .textContainer .heading .textLogo {
+  .heroSection .container .textContainer .heading .textLogo {
     gap: 12px;
   }
 
-  .heroSection .textContainer .heading .textLogo img {
+  .heroSection .container .textContainer .heading .textLogo img {
     height: calc(48px - 12px);
   }
 
-  .heroSection .textContainer p {
+  .heroSection .container .textContainer p {
     font-size: 22px;
     max-width: 500px;
   }
 
-  .heroSection .textContainer .downHero {
+  .heroSection .container .textContainer .downHero {
     font-size: 20px;
   }
 
-  .heroSection .imageContainer {
+  .heroSection .container .imageContainer {
     min-height: 380px;
   }
 
-  .heroSection .imageContainer img {
+  .heroSection .container .imageContainer img {
     right: -130px;
   }
 
@@ -193,47 +208,47 @@
    (max-width: 768px)
    ========================= */
 @media (max-width: 768px) {
-  .heroSection {
+  .heroSection .container {
     flex-direction: column;
     padding: 80px 20px 16px;
     min-height: auto;
     gap: 20px;
-    height: 100%;
   }
 
-  .heroSection .textContainer {
+  .heroSection .container .textContainer {
     order: 2;
     align-items: center;
     text-align: center;
     gap: 24px;
   }
 
-  .heroSection .textContainer .heading h1 {
+  .heroSection .container .textContainer .heading h1 {
     font-size: 36px;
     text-wrap: nowrap;
   }
 
-  .heroSection .textContainer .heading .textLogo {
+  .heroSection .container.textContainer .heading .textLogo {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 6px;
   }
 
-  .heroSection .textContainer .heading .textLogo img {
+  .heroSection .container .textContainer .heading .textLogo img {
     height: calc(36px - 10px);
   }
 
-  .heroSection .textContainer p {
+  .heroSection .container .textContainer p {
     font-size: 18px;
     max-width: 500px;
   }
 
-  .heroSection .textContainer .downHero {
+  .heroSection .container .textContainer .downHero {
     font-size: 18px;
   }
 
-  .heroSection .imageContainer {
+  .heroSection .container .imageContainer {
+    margin-top: 24px;
     order: 1;
     min-height: 0;
     height: 0;
@@ -241,7 +256,7 @@
     justify-content: center;
   }
 
-  .heroSection .imageContainer img {
+  .heroSection .container .imageContainer img {
     position: relative;
     right: auto;
     top: auto;
@@ -254,33 +269,33 @@
    (max-width: 390px)
    ========================= */
 @media (max-width: 391px) {
-  .heroSection {
+  .heroSection .container {
     flex-direction: column;
     padding: 80px 20px 20px;
     min-height: auto;
     gap: 20px;
   }
 
-  .heroSection .textContainer .heading h1 {
+  .heroSection .container .textContainer .heading h1 {
     font-size: 32px;
     text-wrap: nowrap;
   }
 
-  .heroSection .textContainer .heading .textLogo h1 {
+  .heroSection .container .textContainer .heading .textLogo h1 {
     font-size: 32px;
     text-wrap: nowrap;
   }
 
-  .heroSection .textContainer .heading .textLogo img {
+  .heroSection .container .textContainer .heading .textLogo img {
     height: calc(32px - 8px);
   }
 
-  .heroSection .textContainer p {
+  .heroSection .container .textContainer p {
     font-size: 18px;
     max-width: 100%;
   }
 
-  .heroSection .textContainer .downHero {
+  .heroSection .container .textContainer .downHero {
     font-size: 16px;
   }
 }
