@@ -119,6 +119,7 @@
   max-width: none;
   position: relative;
   z-index: 0;
+  height: 60px;
 }
 
 @keyframes marquee {
@@ -131,7 +132,49 @@
 }
 
 .serviceSection .footerSection .brandsSlide img {
-  height: 32px;
+  height: 40px;
+  object-fit: contain;
+  object-position: center;
+  vertical-align: middle;
+}
+
+/* Logo Set */
+
+.serviceSection .footerSection .brandsSlide .serpong,
+.serviceSection .footerSection .brandsSlide .ddpillow,
+.serviceSection .footerSection .brandsSlide .unifiber,
+.serviceSection .footerSection .brandsSlide .pertamina {
+  height: 45px;
+  object-fit: contain;
+  object-position: center;
+  vertical-align: middle;
+}
+
+.serviceSection .footerSection .brandsSlide .bonsoir,
+.serviceSection .footerSection .brandsSlide .finex,
+.serviceSection .footerSection .brandsSlide .fxpro,
+.serviceSection .footerSection .brandsSlide .fitvit,
+.serviceSection .footerSection .brandsSlide .rajajam {
+  height: 35px;
+  object-fit: contain;
+  object-position: center;
+  vertical-align: middle;
+}
+
+.serviceSection .footerSection .brandsSlide .danone,
+.serviceSection .footerSection .brandsSlide .seefluencer {
+  height: 30px;
+  object-fit: contain;
+  object-position: center;
+  vertical-align: middle;
+}
+
+.serviceSection .footerSection .brandsSlide .alphaivf,
+.serviceSection .footerSection .brandsSlide .parispop {
+  height: 50px;
+  object-fit: contain;
+  object-position: center;
+  vertical-align: middle;
 }
 
 .serviceSection .asset2alt {
@@ -182,7 +225,41 @@
   }
 
   .serviceSection .footerSection .brandsSlide img {
-    height: 32px;
+    height: 30px;
+  }
+
+  .serviceSection .footerSection .brandsSlide .serpong,
+  .serviceSection .footerSection .brandsSlide .ddpillow,
+  .serviceSection .footerSection .brandsSlide .unifiber,
+  .serviceSection .footerSection .brandsSlide .pertamina {
+    height: 35px;
+  }
+
+  .serviceSection .footerSection .brandsSlide .bonsoir,
+  .serviceSection .footerSection .brandsSlide .finex,
+  .serviceSection .footerSection .brandsSlide .fxpro,
+  .serviceSection .footerSection .brandsSlide .fitvit,
+  .serviceSection .footerSection .brandsSlide .rajajam {
+    height: 25px;
+    object-fit: contain;
+    object-position: center;
+    vertical-align: middle;
+  }
+
+  .serviceSection .footerSection .brandsSlide .danone,
+  .serviceSection .footerSection .brandsSlide .seefluencer {
+    height: 20px;
+    object-fit: contain;
+    object-position: center;
+    vertical-align: middle;
+  }
+
+  .serviceSection .footerSection .brandsSlide .alphaivf,
+  .serviceSection .footerSection .brandsSlide .parispop {
+    height: 40px;
+    object-fit: contain;
+    object-position: center;
+    vertical-align: middle;
   }
 
   .serviceSection .footerSection .brandsContainer::before,
@@ -230,14 +307,6 @@
     word-wrap: break-word;
     max-width: 100%;
     padding: 0 10px;
-  }
-
-   .serviceSection .footerSection .brandsSlide {
-    gap: 16px
-  }
-
-  .serviceSection .footerSection .brandsSlide img {
-    height: 20px;
   }
 
   .serviceSection .footerSection .brandsContainer::before,
