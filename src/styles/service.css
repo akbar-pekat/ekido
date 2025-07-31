@@ -131,7 +131,7 @@
 }
 
 .serviceSection .footerSection .brandsSlide img {
-  height: 32px;
+  height: 40px;
 }
 
 .serviceSection .asset2alt {
@@ -182,8 +182,7 @@
   }
 
   .serviceSection .footerSection .brandsSlide img {
-    width: 100px;
-    height: auto;
+    height: 32px;
   }
 
   .serviceSection .footerSection .brandsContainer::before,
@@ -233,9 +232,12 @@
     padding: 0 10px;
   }
 
-  .serviceSection .footerSection .brands-slide img {
+   .serviceSection .footerSection .brandsSlide {
+    gap: 16px
+  }
+
+  .serviceSection .footerSection .brandsSlide img {
     height: 20px;
-    max-width: 100px;
   }
 
   .serviceSection .footerSection .brandsContainer::before,
