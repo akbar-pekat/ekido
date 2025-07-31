@@ -17,7 +17,6 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  /* Ubah overflow: hidden menjadi overflow-y: hidden */
   overflow-y: hidden;
   overflow-x: clip;
   position: relative;
@@ -149,10 +148,6 @@
 
   .heroSection .container .imageContainer img {
     right: -130px;
-  }
-
-  .heroSection .asset1 {
-    display: none;
   }
 }
 
