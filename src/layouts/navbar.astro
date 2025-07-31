@@ -50,7 +50,7 @@ import Button from "../components/button.astro";
   document.addEventListener("DOMContentLoaded", () => {
     initMenu();
     highlightActiveSection();
-    setupSectionObserver();
+    setupScrollHandler();
     setupCleanUrl();
   });
 
@@ -78,11 +78,6 @@ import Button from "../components/button.astro";
     document.body.classList.toggle(CLASSES.NO_SCROLL);
   }
 
-  /**
-   * Handles clicks inside the navMenu:
-   * if a .menuItem (or its child) was clicked, close the menu.
-   * @param {MouseEvent} event - The click event object
-   */
   function onNavMenuClick(event: MouseEvent) {
     if ((event.target as Element)?.closest(SELECTORS.MENU_ITEM)) {
       closeMenu();
@@ -119,10 +114,12 @@ import Button from "../components/button.astro";
     }
   }
 
-  function setupSectionObserver() {
+  function setupScrollHandler() {
+    // Dapatkan semua section yang memiliki ID
     const sections: HTMLElement[] = [];
-    const menuSectionIds = new Set<string>();
+    const menuSectionIds = new Set();
 
+    // Kumpulkan semua ID section dari menu items
     document.querySelectorAll(SELECTORS.MENU_ITEM).forEach((item) => {
       const href = item.getAttribute("href");
       if (href && href.startsWith("/#")) {
@@ -135,8 +132,8 @@ import Button from "../components/button.astro";
       }
     });
 
-    const allSections = document.querySelectorAll("section[id]");
-    allSections.forEach((section) => {
+    // Tambahkan semua section lain yang memiliki ID
+    document.querySelectorAll("section[id]").forEach((section) => {
       if (
         !menuSectionIds.has(section.id) &&
         !sections.includes(section as HTMLElement)
@@ -145,94 +142,59 @@ import Button from "../components/button.astro";
       }
     });
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        let tentangekidoVisible = false;
+    // Handler untuk scroll event
+    function handleScroll() {
+      // Dapatkan posisi scroll saat ini
+      const scrollPosition = window.scrollY + window.innerHeight / 3;
+      
+      // Cek apakah berada di bagian Hero (di atas semua section)
+      const isInHeroSection = true;
+      
+      // Periksa section tentangekido terlebih dahulu
+      const tentangekidoSection = document.getElementById("tentangekido");
+      if (tentangekidoSection) {
+        const tentangekidoTop = tentangekidoSection.offsetTop;
+        const tentangekidoBottom =
+          tentangekidoTop + tentangekidoSection.offsetHeight;
 
-        entries.forEach((entry) => {
-          if (
-            entry.isIntersecting &&
-            (entry.target.id === "tentangekido" ||
-             entry.target.closest("#tentangekido"))
-          ) {
-            tentangekidoVisible = true;
-          }
-        });
-
-        if (tentangekidoVisible) {
+        if (
+          scrollPosition >= tentangekidoTop &&
+          scrollPosition <= tentangekidoBottom
+        ) {
           setActiveMenuItem("tentangekido");
           return;
         }
+      }
 
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            if (menuSectionIds.has(entry.target.id)) {
-              setActiveMenuItem(entry.target.id);
-            } else {
-              document.querySelectorAll(SELECTORS.MENU_ITEM).forEach((item) => {
-                item.classList.remove(CLASSES.ACTIVE);
-              });
-            }
-          } else if (
-            !entry.isIntersecting &&
-            entry.boundingClientRect.top <= 0
-          ) {
-            const visibleSections = sections
-              .filter((section) => {
-                const rect = section.getBoundingClientRect();
-                return rect.top <= window.innerHeight && rect.bottom >= 0;
-              })
-              .sort((a, b) => {
-                return (
-                  Math.abs(a.getBoundingClientRect().top) -
-                  Math.abs(b.getBoundingClientRect().top)
-                );
-              });
+      // Periksa section lainnya
+      let currentSection = null;
 
-            if (visibleSections.length > 0) {
-              if (
-                visibleSections[0].id === "tentangekido" ||
-                visibleSections[0].closest("#tentangekido")
-              ) {
-                setActiveMenuItem("tentangekido");
-              } else if (menuSectionIds.has(visibleSections[0].id)) {
-                setActiveMenuItem(visibleSections[0].id);
-              }
-            }
-          } else if (
-            !entry.isIntersecting &&
-            entry.boundingClientRect.top > 0
-          ) {
-            const visibleSections = sections
-              .filter((section) => {
-                const rect = section.getBoundingClientRect();
-                return rect.top <= window.innerHeight && rect.bottom >= 0;
-              })
-              .sort((a, b) => {
-                return (
-                  a.getBoundingClientRect().top - b.getBoundingClientRect().top
-                );
-              });
+      for (const section of sections) {
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + section.offsetHeight;
 
-            if (visibleSections.length > 0) {
-              if (
-                visibleSections[0].id === "tentangekido" ||
-                visibleSections[0].closest("#tentangekido") // Periksa apakah elemen berada dalam container dengan ID tentangekido
-              ) {
-                setActiveMenuItem("tentangekido");
-              } else if (menuSectionIds.has(visibleSections[0].id)) {
-                setActiveMenuItem(visibleSections[0].id);
-              }
-            }
-          }
+        if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
+          currentSection = section;
+          let isInHeroSection = false;
+          break;
+        }
+      }
+
+      if (currentSection && menuSectionIds.has(currentSection.id)) {
+        setActiveMenuItem(currentSection.id);
+      } else if (isInHeroSection) {
+        // Hapus semua highlight jika berada di bagian Hero
+        document.querySelectorAll(SELECTORS.MENU_ITEM).forEach((item) => {
+          item.classList.remove(CLASSES.ACTIVE);
         });
-      },
-      { threshold: 0.2 }
-    );
+      }
+    }
 
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
+    // Tambahkan event listener untuk scroll
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    // Panggil sekali saat halaman dimuat
+    handleScroll();
   }
 
   function setupCleanUrl() {
